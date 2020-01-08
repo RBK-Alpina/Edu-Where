@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+mongoose.Promise = global.Promise;
+
 mongoose.connect(
   `mongodb+srv://maher:${process.env.PSW}@cluster0-ztajo.mongodb.net/test?retryWrites=true&w=majority`,
   { useNewUrlParser: true, useUnifiedTopology: true }
