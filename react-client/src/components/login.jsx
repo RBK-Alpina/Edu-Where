@@ -1,13 +1,15 @@
 import React from "react";
+import { Redirect } from 'react-router-dom';
+import $ from "jquery";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
+      logged: false,
       email: "",
       password: "",
-      confirmedPassword: ""
     }
     this.saveValue = this.saveValue.bind(this)
     this.sendInfo = this.sendInfo.bind(this);
@@ -18,9 +20,16 @@ class Login extends React.Component {
   }
   sendInfo(e) {
     console.log(this.state)
-    if (this.state.password !== this.state.confirmedPassword) {
-      document.querySelector('.error').style.display = "block";
-    }
+    $.post('/auth/login', this.state)
+      .then(result => {
+        if (!result.found) {
+          document.querySelector('.error').innerText = result.msg;
+          document.querySelector('.error').style.display = "block";
+        } else {
+          localStorage.setItem('token', result.token)
+          this.setState({ logged: true })
+        }
+      })
     e.preventDefault();
 
   }
@@ -33,10 +42,12 @@ class Login extends React.Component {
           <br />
           <input type="password" name="password" value={this.state.password} onChange={this.saveValue} />
           <br />
-          <input type="submit" onClick={this.sendInfo} />
+          <input type="submit" onClick={this.sendInfo} value="Login" />
           <br />
           <a href="/signup">Sign Up</a>
         </from>
+        <h1 className="error" style={{ display: "none" }}></h1>
+        {this.state.logged && <Redirect to="/" />}
       </div>
     );
   }
