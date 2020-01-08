@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const db = require("../db/index.js");
 const authRoute = require("./routers/auth");
 
-let PORT = process.env._PORT || 5000;
+let PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
