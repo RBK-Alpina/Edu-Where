@@ -16,7 +16,7 @@ app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
 
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../react-client/dist", "index.html"));
 });
 

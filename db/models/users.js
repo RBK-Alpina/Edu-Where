@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 
 var userSchema = mongoose.Schema({
   username: {
-    unique: true,
     required: true,
     type: String
   },
@@ -33,7 +32,7 @@ const findUser = (email, password) => {
   return User.findOne({ email }).then(async user => {
     if (user) {
       let pswd = await bcrypt.compare(password, user.password);
-      return pswd;
+      return { found: pswd, user };
     } else {
       return false;
     }
