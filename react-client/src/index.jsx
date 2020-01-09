@@ -1,22 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import $ from "jquery";
+import { BrowserRouter } from 'react-router-dom';
+import App from "./app.jsx"
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: []
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Item List</h1>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render((
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+), document.getElementById("app"));
