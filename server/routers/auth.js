@@ -7,9 +7,9 @@ require("dotenv").config();
 const router = express.Router();
 
 router.post("/signUp", (req, res) => {
-  let { username, email, password } = req.body;
+  let { firstName, lastName, email, password } = req.body;
   user
-    .saveUser(username, email, password)
+    .saveUser(firstName, lastName, email, password)
     .then(savedUser => {
       const secret = process.env.JWT_SECRET;
       const expire = 3600;

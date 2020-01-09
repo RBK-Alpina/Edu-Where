@@ -1,4 +1,6 @@
 import React from 'react';
+import Carte from './top-teachers/Carte.jsx';
+import Search from './search/Search.jsx';
 
 class Home extends React.Component {
   constructor(props) {
@@ -9,9 +11,13 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <h1>Home</h1>
-        <a href="/login">Login</a>
-        <a href="/signup">Sign Up</a>
+        <nav>
+          <a href="/login">Login</a>
+          <a href="/signup">Sign Up</a>
+          <a href="/add">Add an announce</a>
+        </nav>
+        <Search />
+        <Carte />
       </div>
     )
   }

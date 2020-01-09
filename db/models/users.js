@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
-var userSchema = mongoose.Schema({
-  username: {
+const userSchema = mongoose.Schema({
+  firstName: {
+    required: true,
+    type: String
+  },
+  lastName: {
     required: true,
     type: String
   },
@@ -11,17 +15,21 @@ var userSchema = mongoose.Schema({
     required: true,
     type: String
   },
-  password: String
+  password: {
+    required: true,
+    type: String
+  }
 });
 
 let User = mongoose.model("User", userSchema);
 
-const saveUser = async (username, email, password) => {
+const saveUser = async (firstName, lastName, email, password) => {
   const salt = await bcrypt.genSalt();
   const hashedPassword = await bcrypt.hash(password, salt);
 
   let user = new User({
-    username: username,
+    firstName: firstName,
+    lastName: lastName,
     email: email,
     password: hashedPassword
   });
