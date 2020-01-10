@@ -6,6 +6,7 @@ const authRoute = require("./routers/auth");
 const top3 = require("./routers/top3");
 const announce = require("./routers/announce");
 const announces = require("./routers/announces");
+const updates = require("./routers/updates");
 require("dotenv").config();
 
 let PORT = process.env.PORT || 5000;
@@ -24,7 +25,7 @@ app.use("/categorie", top3);
 app.use("/announces", announces);
 app.use("/announce", announce);
 app.use("/auth", authRoute);
-
+app.use("/update", updates);
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../react-client/dist", "index.html"));
 });

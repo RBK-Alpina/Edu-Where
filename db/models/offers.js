@@ -35,7 +35,16 @@ const addToDb = obj => {
   return offre.save(obj);
 };
 
+const findAndUpdate = id => {
+  return Offre.findOneAndUpdate(
+    { _id: id },
+    { $inc: { views: 1 } },
+    { useFindAndModify: false }
+  );
+};
+
 module.exports.addToDb = addToDb;
 module.exports.findOffer = findOffer;
 module.exports.findAll = findAll;
 module.exports.findOne = findOne;
+module.exports.findAndUpdate = findAndUpdate;

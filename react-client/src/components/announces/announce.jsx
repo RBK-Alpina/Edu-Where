@@ -13,7 +13,11 @@ class Announce extends React.Component {
 
   componentWillMount() {
     let id = window.location.pathname.split('/')[1]
-    $.get(`/announce/${id}`)
+    $.ajax({
+      url: '/update/views',
+      method: 'PATCH',
+      data: { id }
+    })
       .then(res => this.setState({ info: res }))
   }
 
