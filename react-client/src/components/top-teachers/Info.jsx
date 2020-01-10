@@ -27,11 +27,10 @@ class Info extends React.Component {
   }
 
   sendID() {
-    localStorage.setItem('redirection', this.state.info._id)
     this.setState({ clicked: true })
   }
   RenderTheComponant() {
-    return <Redirect to={`/ad/${this.state.info._id}`} />
+    return <Redirect to={`/${this.state.info._id}`} />
   }
   render() {
     return (

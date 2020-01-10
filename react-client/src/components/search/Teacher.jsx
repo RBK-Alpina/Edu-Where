@@ -7,11 +7,10 @@ class Teacher extends React.Component {
     this.state = {}
   }
   changeState(e) {
-    localStorage.setItem('redirection', this.props.data._id)
     this.setState({ clicked: true })
   }
   RenderTheComponant() {
-    return <Redirect to={`/ad/${this.props.data._id}`} />
+    return <Redirect to={`/${this.props.data._id}`} />
   }
   render() {
     return (
@@ -24,7 +23,7 @@ class Teacher extends React.Component {
         >
           <h2>{this.props.data.firstName}</h2>
           <h3>{this.props.data.categorie}</h3>
-          <h1>{this.props.data.price}DT/2 Hours </h1>
+          <h1>{this.props.data.price} DT</h1>
           <p>{this.props.data.description}</p>
         </div>
         {this.state.clicked && this.RenderTheComponant()}

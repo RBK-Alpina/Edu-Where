@@ -4,8 +4,22 @@ const verifyToken = require("../middleware/verifyToken");
 const router = express.Router();
 
 router.post("/add", verifyToken, (req, res) => {
-  console.log(req.body);
-  db.addToDb(req.body).then(result => res.send(result));
+  console.log("post");
+  let { region, price, phone, categorie, description } = req.body;
+  let { firstName, lastName, email } = req.user.user;
+  let announce = {
+    firstName,
+    lastName,
+    email,
+    region,
+    price,
+    phone,
+    description,
+    categorie
+  };
+  db.addToDb(announce)
+    .then(result => console.log(result))
+    .catch(err => console.log("err"));
 });
 
 router.get("/:id", (req, res) => {

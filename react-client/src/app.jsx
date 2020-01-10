@@ -10,13 +10,12 @@ import { Route, Switch } from 'react-router-dom';
 
 const App = () => (
   <div>
-    {console.log(<Form />)}
     <Switch>
       <Route path='/signup' component={SignUp} />
       <Route path='/result' component={SearchList} />
       <Route path='/login' component={Login} />
       <Route path='/add' component={Form} />
-      <Route path='/ad' component={Announce} />
+      <Route path='/:id' component={Announce} />
       <Route path='/' component={Home} />
     </Switch>
   </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import $ from "jquery";
-import { Redirect } from 'react-router-dom';
-
+import NavBar from '../nav.jsx';
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -22,6 +21,7 @@ class SignUp extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
   sendInfo(e) {
+    e.preventDefault();
     if (this.state.firstName === "") {
       document.querySelector('.error').innerText = "You need to enter your first name";
       document.querySelector('.error').style.display = "block";
@@ -42,16 +42,16 @@ class SignUp extends React.Component {
             document.querySelector('.error').style.display = "block";
           } else {
             localStorage.setItem('token', result.token)
-            this.setState({ logged: true })
+            window.location.pathname = "/";
           }
         })
     }
-    e.preventDefault();
   }
 
   render() {
     return (
       <div>
+        <NavBar />
         <h1>Sign Up</h1>
         <from >
           <label>First Name</label>
@@ -74,7 +74,6 @@ class SignUp extends React.Component {
           <a href="/login">Login</a>
         </from>
         <h1 className="error" style={{ display: "none" }}></h1>
-        {this.state.logged && <Redirect to="/" />}
       </div>
     );
   }

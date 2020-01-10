@@ -26,7 +26,6 @@ let User = mongoose.model("User", userSchema);
 const saveUser = async (firstName, lastName, email, password) => {
   const salt = await bcrypt.genSalt();
   const hashedPassword = await bcrypt.hash(password, salt);
-
   let user = new User({
     firstName: firstName,
     lastName: lastName,
