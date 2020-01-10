@@ -5,7 +5,7 @@ let verifyToken = (req, res, next) => {
   if (!token) return res.status(401).send("/");
 
   const verified = jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.status(403);
+    if (err) return res.status(403).send("/");
     req.user = user;
     next();
   });
