@@ -1,5 +1,5 @@
 const express = require("express");
-const user = require("../../db/models/users");
+const User = require("../../db/models/users");
 const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
@@ -8,12 +8,11 @@ const router = express.Router();
 
 router.post("/signUp", (req, res) => {
   let { firstName, lastName, email, password } = req.body;
-  user
-    .saveUser(firstName, lastName, email, password)
+  User.saveUser(firstName, lastName, email, password)
     .then(savedUser => {
       const secret = process.env.JWT_SECRET;
       const expire = 3600;
-      const token = jwt.sign({ id: user._id }, secret, {
+      const token = jwt.sign(savedUser, secret, {
         expiresIn: expire
       });
       return res.status(201).send({ saved: true, user: savedUser, token });
@@ -28,13 +27,12 @@ router.post("/signUp", (req, res) => {
 
 router.post("/login", (req, res) => {
   let { email, password } = req.body;
-  user
-    .findUser(email, password)
+  User.findUser(email, password)
     .then(user => {
       if (user.found) {
         const secret = process.env.JWT_SECRET;
         const expire = 3600;
-        const token = jwt.sign({ id: user._id }, secret, {
+        const token = jwt.sign(user, secret, {
           expiresIn: expire
         });
         return res.send({ found: true, token });

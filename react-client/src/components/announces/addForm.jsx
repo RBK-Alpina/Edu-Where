@@ -5,8 +5,6 @@ class Form extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstName: "",
-      lastName: "",
       categorie: "",
       region: "",
       phone: "",
@@ -24,29 +22,24 @@ class Form extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    $.post('/announces/add', this.state)
-      .then(res => console.log(res))
+    let token = localStorage.getItem('token')
+    $.ajax({
+      url: "/announces/add",
+      method: "POST",
+      data: JSON.stringify(this.state),
+      headers: { token }
+    })
+      .done(res => console.log("done", res))
+      .fail(err => console.log(err.responseText))
   };
+  validation() {
 
+  }
 
   render() {
     return (
       <div>
         <form>
-          <input
-            name="firstName"
-            placeholder="Enter your first name"
-            value={this.state.firstName}
-            onChange={this.change}
-          />
-          <br />
-          <input
-            name="lastName"
-            placeholder="Enter your last name"
-            value={this.state.lastName}
-            onChange={this.change}
-          />
-          <br />
           <input
             name="categorie"
             placeholder="category"
