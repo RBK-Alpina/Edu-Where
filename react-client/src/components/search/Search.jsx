@@ -15,7 +15,7 @@ class Search extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    localStorage.setItem('query', this.state.searchInput)
+    window.query = this.state.searchInput
     this.setState({ found: true })
   }
   goToResult() {

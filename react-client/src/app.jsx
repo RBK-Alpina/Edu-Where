@@ -16,7 +16,7 @@ const App = () => (
       <Route path='/result' component={SearchList} />
       <Route path='/login' component={Login} />
       <Route path='/add' component={Form} />
-      <Route path='/ad' component={Announce} />
+      <Route path='/:id' component={Announce} />
       <Route path='/' component={Home} />
     </Switch>
   </div>

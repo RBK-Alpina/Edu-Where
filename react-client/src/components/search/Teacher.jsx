@@ -7,7 +7,6 @@ class Teacher extends React.Component {
     this.state = {}
   }
   changeState(e) {
-    localStorage.setItem('redirection', this.props.data._id)
     this.setState({ clicked: true })
   }
   RenderTheComponant() {

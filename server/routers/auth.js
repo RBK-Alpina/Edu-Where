@@ -10,11 +10,17 @@ router.post("/signUp", (req, res) => {
   let { firstName, lastName, email, password } = req.body;
   User.saveUser(firstName, lastName, email, password)
     .then(savedUser => {
+      const user = {
+        firstName: savedUser.firstName,
+        lastName: savedUser.lastName,
+        email: savedUser.email
+      };
       const secret = process.env.JWT_SECRET;
       const expire = 3600;
-      const token = jwt.sign(savedUser, secret, {
+      const token = jwt.sign(user, secret, {
         expiresIn: expire
       });
+      console.log("saved");
       return res.status(201).send({ saved: true, user: savedUser, token });
     })
     .catch(err => {

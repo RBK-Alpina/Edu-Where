@@ -12,8 +12,8 @@ class Announce extends React.Component {
   }
 
   componentWillMount() {
-    console.log("test")
-    $.get(`/announce/${localStorage.getItem('redirection')}`)
+    let id = window.location.pathname.split('/')[1]
+    $.get(`/announce/${id}`)
       .then(res => this.setState({ info: res }))
   }
 

@@ -21,9 +21,8 @@ class SearchList extends Component {
     this.inputHandler = this.inputHandler.bind(this);
   }
   componentDidMount() {
-    let categorie = localStorage.getItem("query");
-    $.get(`/announces/${categorie}`).then(res => {
-      console.log(res);
+    let categorie = window.query;
+    $.get(`/${categorie}`).then(res => {
       this.setState({ teachers: res });
     });
   }
