@@ -10,7 +10,6 @@ import { Route, Switch } from 'react-router-dom';
 
 const App = () => (
   <div>
-    {console.log(<Form />)}
     <Switch>
       <Route path='/signup' component={SignUp} />
       <Route path='/result' component={SearchList} />

@@ -13,7 +13,6 @@ class Carte extends React.Component {
 
   async componentWillMount() {
     const data = await this.getData();
-    console.log(data)
     this.setState({ data })
   }
 

@@ -5,7 +5,7 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchInput: 'Math',
+      searchInput: "",
       teachers: ['Math', 'Physics', 'It', 'Science', 'Philosophy', 'Geography']
     };
 
@@ -29,16 +29,8 @@ class Search extends Component {
     return (
       <div>
         <div className='mainSearch'>
-          <form onSubmit={this.onSubmit}>
-            <select id="region" onChange={this.onChange}>
-              {
-                this.state.teachers.map((elem, i) =>
-                  <option value={elem} key={i}>{elem}</option>
-                )
-              }
-            </select>
-            <button type='submit' >Search</button>
-          </form>
+          <input type="search" name="search" value={this.state.searchInput} onChange={this.onChange} />
+          <button type='submit' onClick={this.onSubmit}>Search</button>
         </div>
         {this.state.found && this.goToResult()}
       </div>

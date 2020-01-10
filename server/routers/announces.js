@@ -16,8 +16,7 @@ router.post("/add", verifyToken, (req, res) => {
     description,
     categorie
   };
-  console.log(announce);
-  db.addToDb(req.body).then(result => res.send(result));
+  db.addToDb(announce).then(result => res.send(result));
 });
 
 router.get("/:id", (req, res) => {

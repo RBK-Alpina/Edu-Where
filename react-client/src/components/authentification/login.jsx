@@ -35,17 +35,15 @@ class Login extends React.Component {
       <div>
         <NavBar />
         <h1>Login</h1>
-        <from >
-          <label>Email</label>
-          <input type="text" name="email" value={this.state.email} onChange={this.saveValue} />
-          <br />
-          <label>Password</label>
-          <input type="password" name="password" value={this.state.password} onChange={this.saveValue} />
-          <br />
-          <input type="submit" onClick={this.sendInfo} value="Login" />
-          <br />
-          <a href="/signup">Sign Up</a>
-        </from>
+        <label>Email</label>
+        <input type="text" name="email" value={this.state.email} onChange={this.saveValue} />
+        <br />
+        <label>Password</label>
+        <input type="password" name="password" value={this.state.password} onChange={this.saveValue} />
+        <br />
+        <input type="submit" onClick={this.sendInfo} value="Login" />
+        <br />
+        <a href="/signup">Sign Up</a>
         <h1 className="error" style={{ display: "none" }}></h1>
       </div>
     );

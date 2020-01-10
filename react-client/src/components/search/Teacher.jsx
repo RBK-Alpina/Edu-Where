@@ -10,7 +10,7 @@ class Teacher extends React.Component {
     this.setState({ clicked: true })
   }
   RenderTheComponant() {
-    return <Redirect to={`/ad/${this.props.data._id}`} />
+    return <Redirect to={`/${this.props.data._id}`} />
   }
   render() {
     return (

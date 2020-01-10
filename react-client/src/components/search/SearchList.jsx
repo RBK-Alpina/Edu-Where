@@ -20,9 +20,9 @@ class SearchList extends Component {
     };
     this.inputHandler = this.inputHandler.bind(this);
   }
-  componentDidMount() {
+  async componentWillMount() {
     let categorie = window.query;
-    $.get(`/${categorie}`).then(res => {
+    await $.get(`/announces/${categorie}`).then(res => {
       this.setState({ teachers: res });
     });
   }
@@ -36,9 +36,9 @@ class SearchList extends Component {
     return (
       <div>
         <NavBar />
-        <form>
-          <input type="text" onChange={this.inputHandler} value={searchQuery} />
-        </form>
+
+        <input type="text" onChange={this.inputHandler} value={searchQuery} />
+
         {teachers.filter(searchFilter(searchQuery)).map(elm => (
           <div key={elm._id}>
             <Teacher data={elm} />

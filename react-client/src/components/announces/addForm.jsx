@@ -7,6 +7,7 @@ class Form extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      categories: ["", 'Math', 'Physics', 'It', 'Science', 'Philosophy', 'Geography'],
       categorie: "",
       region: "",
       phone: "",
@@ -61,43 +62,43 @@ class Form extends React.Component {
     return (
       <div>
         <NavBar />
-        <form>
-          <input
-            name="categorie"
-            placeholder="category"
-            value={this.state.categorie}
-            onChange={this.change}
-          />
-          <br />
-          <input
-            name="region"
-            placeholder="region"
-            value={this.state.region}
-            onChange={this.change}
-          />
-          <br />
-          <input
-            name="phone"
-            placeholder="Enter your phoneNumber"
-            value={this.state.phone}
-            onChange={this.change}
-          />
-          <br />
-          <input
-            name="price"
-            placeholder="Enter your price"
-            value={this.state.price}
-            onChange={this.change}
-          />
-          <br />
-          <textarea
-            name="description"
-            placeholder="Enter your price"
-            value={this.state.description}
-            onChange={this.change}
-          ></textarea>
-          <button onClick={this.onSubmit}>Submit</button>
-        </form>
+        <input
+          name="region"
+          placeholder="region"
+          value={this.state.region}
+          onChange={this.change}
+        />
+        <br />
+        <select name="categorie" onChange={this.change}
+        >
+          {
+            this.state.categories.map((elem, i) =>
+              <option value={elem} key={i}>{elem}</option>
+            )
+          }
+        </select>
+        <br />
+        <input
+          name="phone"
+          placeholder="Enter your phoneNumber"
+          value={this.state.phone}
+          onChange={this.change}
+        />
+        <br />
+        <input
+          name="price"
+          placeholder="Enter your price"
+          value={this.state.price}
+          onChange={this.change}
+        />
+        <br />
+        <textarea
+          name="description"
+          placeholder="Enter your description"
+          value={this.state.description}
+          onChange={this.change}
+        ></textarea>
+        <button onClick={this.onSubmit}>Submit</button>
         <h1 className="error" style={{ display: "none" }}></h1>
         {this.state.done && <Redirect to="/" />}
         {this.state.fail && this.redirection()}
