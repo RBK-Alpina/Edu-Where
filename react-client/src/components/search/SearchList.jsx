@@ -16,28 +16,43 @@ class SearchList extends Component {
     super(props);
     this.state = {
       teachers: [],
+      categorie: "",
       searchQuery: ""
     };
     this.inputHandler = this.inputHandler.bind(this);
+    this.onSubmit = this.onSubmit.bind(this)
   }
-  async componentWillMount() {
+  async componentDidMount() {
     let categorie = window.query;
-    await $.get(`/announces/${categorie}`).then(res => {
+    await this.getAnnounces(categorie)
+  }
+  async componentDidUpdate() {
+    let categorie = window.query;
+    await this.getAnnounces(categorie)
+  }
+  getAnnounces(categorie) {
+    $.get(`/announces/${categorie}`).then(res => {
       this.setState({ teachers: res });
     });
   }
-
+  async onSubmit(event) {
+    event.preventDefault();
+    let categorie = this.state.categorie;
+    await this.getAnnounces(categorie)
+  }
   inputHandler(event) {
-    this.setState({ searchQuery: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
-    const { teachers, searchQuery } = this.state;
+    const { teachers, searchQuery, categorie } = this.state;
     return (
       <div>
         <NavBar />
 
-        <input type="text" onChange={this.inputHandler} value={searchQuery} />
+        <input type="text" name="searchQuery" onChange={this.inputHandler} value={searchQuery} placeholder="Search by region" /><br />
+        <input type="tesxt" name="categorie" onChange={this.inputHandler} value={categorie} placeholder="Search by categorie" />
+        <button type='submit' onClick={this.onSubmit}>Search</button>
 
         {teachers.filter(searchFilter(searchQuery)).map(elm => (
           <div key={elm._id}>
