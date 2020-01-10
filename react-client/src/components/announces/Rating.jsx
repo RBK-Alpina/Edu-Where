@@ -18,6 +18,14 @@ class Rating extends React.Component {
       document.getElementById(`${i}`).style.backgroundColor = 'gold'
       i++
     }
+    $.ajax({
+      url: '/update/ratings',
+      method: 'PATCH',
+      data: {
+        rating: e.target.innerText,
+        id: this.props.data._id
+      }
+    })
     this.setState({ rating: e.target.innerText })
   }
 

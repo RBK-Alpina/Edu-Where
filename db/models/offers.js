@@ -10,6 +10,10 @@ const offreSchema = mongoose.Schema({
     type: Number,
     default: 0
   },
+  rating: {
+    type: Number,
+    default: 0
+  },
   phone: String,
   description: String
 });
@@ -42,8 +46,16 @@ const findAndUpdate = id => {
     { useFindAndModify: false }
   );
 };
+const updateRating = (id, rating) => {
+  return Offre.findOneAndUpdate(
+    { _id: id },
+    { rating },
+    { useFindAndModify: false }
+  );
+};
 
 module.exports.addToDb = addToDb;
+module.exports.updateRating = updateRating;
 module.exports.findOffer = findOffer;
 module.exports.findAll = findAll;
 module.exports.findOne = findOne;

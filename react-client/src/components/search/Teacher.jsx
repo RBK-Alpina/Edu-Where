@@ -23,7 +23,7 @@ class Teacher extends React.Component {
         >
           <h2>{this.props.data.firstName}</h2>
           <h3>{this.props.data.categorie}</h3>
-          <h1>{this.props.data.price}DT/2 Hours </h1>
+          <h1>{this.props.data.price} DT</h1>
           <p>{this.props.data.description}</p>
         </div>
         {this.state.clicked && this.RenderTheComponant()}

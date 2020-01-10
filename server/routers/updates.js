@@ -5,7 +5,21 @@ const router = express.Router();
 
 router.patch("/views", (req, res) => {
   console.log(req.body.id);
-  db.findAndUpdate(req.body.id).then(updatedData => res.send(updatedData));
+  db.findAndUpdate(req.body.id)
+    .then(updatedData => res.send(updatedData))
+    .catch(err => console.log(err));
 });
 
+router.patch("/ratings", (req, res) => {
+  let rating = parseInt(req.body.rating);
+  let id = req.body.id;
+  console.log({ id, rating });
+  db.findOne(id)
+    .then(user => {
+      return (user.rating + rating) / 2;
+    })
+    .then(ratings => db.updateRating(id, ratings))
+    .then(updatedData => res.send("updated"))
+    .catch(err => console.log(err));
+});
 module.exports = router;

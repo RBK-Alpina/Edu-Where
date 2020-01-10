@@ -30,7 +30,8 @@ class Announce extends React.Component {
         <h3>{this.state.info.region}</h3>
         <h3>{this.state.info.description}</h3>
         <h3>{this.state.info.price} DT</h3>
-        <Rating />
+        <h3>{this.state.info.rating} Stars</h3>
+        <Rating data={this.state.info} />
       </div>
     )
   }
