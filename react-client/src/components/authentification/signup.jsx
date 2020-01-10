@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import NavBar from '../nav.jsx';
 import { Redirect } from 'react-router-dom';
 
 
@@ -52,6 +53,7 @@ class SignUp extends React.Component {
   render() {
     return (
       <div>
+        <NavBar />
         <h1>Sign Up</h1>
         <from >
           <label>First Name</label>

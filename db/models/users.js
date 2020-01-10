@@ -27,13 +27,12 @@ const saveUser = async (firstName, lastName, email, password) => {
   const salt = await bcrypt.genSalt();
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  let user = new User({
+  return new User({
     firstName: firstName,
     lastName: lastName,
     email: email,
     password: hashedPassword
-  });
-  return user.save();
+  }).save();
 };
 
 const findUser = (email, password) => {

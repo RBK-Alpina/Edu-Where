@@ -1,6 +1,7 @@
 import React from "react";
 import $ from "jquery";
 import Rating from './Rating.jsx'
+import NavBar from '../nav.jsx';
 
 class Announce extends React.Component {
   constructor(props) {
@@ -18,14 +19,14 @@ class Announce extends React.Component {
 
   render() {
     return (
-      <div onClick={this.sendID}>
+      <div>
+        <NavBar />
         <h3>{this.state.info.firstName} {this.state.info.lastName}</h3>
         <h3>{this.state.info.categorie}</h3>
         <h3>{this.state.info.region}</h3>
         <h3>{this.state.info.description}</h3>
         <h3>{this.state.info.price} DT</h3>
         <Rating />
-        <a href="/">Home</a>
       </div>
     )
   }

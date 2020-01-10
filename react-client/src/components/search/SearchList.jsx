@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Teacher from "./Teacher.jsx";
 import $ from "jquery";
+import NavBar from '../nav.jsx';
 
 //returns a boolean output (if query matches name OR do nothing if no query)
 function searchFilter(searchQuery) {
@@ -35,6 +36,7 @@ class SearchList extends Component {
     const { teachers, searchQuery } = this.state;
     return (
       <div>
+        <NavBar />
         <form>
           <input type="text" onChange={this.inputHandler} value={searchQuery} />
         </form>

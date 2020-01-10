@@ -1,5 +1,7 @@
 import React from "react";
 import $ from "jquery";
+import NavBar from '../nav.jsx';
+import { Redirect } from 'react-router-dom';
 
 class Form extends React.Component {
   constructor(props) {
@@ -8,37 +10,57 @@ class Form extends React.Component {
       categorie: "",
       region: "",
       phone: "",
-      price: ''
+      description: "",
+      price: ""
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.change = this.change.bind(this);
   }
 
   change(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    document.querySelector('.error').style.display = "none";
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   onSubmit(e) {
     e.preventDefault();
     let token = localStorage.getItem('token')
-    $.ajax({
-      url: "/announces/add",
-      method: "POST",
-      data: JSON.stringify(this.state),
-      headers: { token }
-    })
-      .done(res => console.log("done", res))
-      .fail(err => console.log(err.responseText))
-  };
+    if (this.validation()) {
+      document.querySelector('.error').innerText = this.validation();
+      document.querySelector('.error').style.display = "block";
+    } else {
+      $.ajax({
+        url: "/announces/add",
+        method: "POST",
+        data: this.state,
+        headers: { token }
+      })
+        .done(res => this.setState({ done: true }))
+        .fail(err => this.setState({ fail: true }))
+    };
+  }
+  redirection(msg) {
+    return (
+      <div>
+        <h1>You need to be connected to post an announce</h1>
+        <div>
+          <a href="/login">Login</a>
+          <a href="/signup">Sign Up</a>
+        </div>
+      </div>
+    )
+  }
   validation() {
-
+    for (let key in this.state) {
+      if (this.state[key] === "" && key !== "description") return `${key} is required`
+    }
+    return false
   }
 
   render() {
     return (
       <div>
+        <NavBar />
         <form>
           <input
             name="categorie"
@@ -67,9 +89,19 @@ class Form extends React.Component {
             value={this.state.price}
             onChange={this.change}
           />
+          <br />
+          <textarea
+            name="description"
+            placeholder="Enter your price"
+            value={this.state.description}
+            onChange={this.change}
+          ></textarea>
           <button onClick={this.onSubmit}>Submit</button>
         </form>
-      </div>
+        <h1 className="error" style={{ display: "none" }}></h1>
+        {this.state.done && <Redirect to="/" />}
+        {this.state.fail && this.redirection()}
+      </div >
     );
   }
 }

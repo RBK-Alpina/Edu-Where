@@ -18,6 +18,7 @@ router.post("/signUp", (req, res) => {
       return res.status(201).send({ saved: true, user: savedUser, token });
     })
     .catch(err => {
+      console.log(err);
       res.status(201).json({
         saved: false,
         msg: "There is already an account with this email"

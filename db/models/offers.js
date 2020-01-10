@@ -4,7 +4,7 @@ const offreSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
   categorie: String,
-  price: Number,
+  price: String,
   region: String,
   views: {
     type: Number,

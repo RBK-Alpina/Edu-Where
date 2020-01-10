@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from 'react-router-dom';
 import $ from "jquery";
+import NavBar from '../nav.jsx';
 
 class Login extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
+        <NavBar />
         <h1>Login</h1>
         <from >
           <label>Email</label>
