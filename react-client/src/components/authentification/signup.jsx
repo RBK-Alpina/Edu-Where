@@ -24,22 +24,22 @@ class SignUp extends React.Component {
     e.preventDefault();
     if (this.state.firstName === "") {
       document.querySelector('.error').innerText = "You need to enter your first name";
-      document.querySelector('.error').style.display = "block";
+      document.querySelector('.error').style.display = "inline";
     } else if (this.state.lastName === "") {
       document.querySelector('.error').innerText = "You need to enter your last name";
-      document.querySelector('.error').style.display = "block";
+      document.querySelector('.error').style.display = "inline";
     } else if (!this.state.email.includes('@') || !this.state.email.includes('.') || this.state.email === "") {
       document.querySelector('.error').innerText = "The email is not valid";
-      document.querySelector('.error').style.display = "block";
+      document.querySelector('.error').style.display = "inline";
     } else if (this.state.password !== this.state.confirmedPassword || this.state.password === "") {
       document.querySelector('.error').innerText = "The password dosen't match";
-      document.querySelector('.error').style.display = "block";
+      document.querySelector('.error').style.display = "inline";
     } else {
       $.post('/auth/signup', this.state)
         .then(result => {
           if (!result.saved) {
             document.querySelector('.error').innerText = result.msg;
-            document.querySelector('.error').style.display = "block";
+            document.querySelector('.error').style.display = "inline";
           } else {
             localStorage.setItem('token', result.token)
             window.location.pathname = "/";
@@ -56,7 +56,6 @@ class SignUp extends React.Component {
           backgroundImage: `url(https://i.ibb.co/5nnH0w2/bg.jpg)`,
           position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)'
         }}>
-
           <main className="pa4 white" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -25%)', opacity: '1' }}>
             <form className="measure center">
               <fieldset
@@ -115,7 +114,6 @@ class SignUp extends React.Component {
                     onChange={this.saveValue}
                   />
                 </div>
-
                 <div className="mv3">
                   <label
                     className="db fw6 lh-copy f6"
@@ -159,14 +157,12 @@ class SignUp extends React.Component {
                 <h4 className="error tc red pa3" style={{ display: "none" }}></h4>
               </div>
               <div className="lh-copy mt3">
-
                 <a
                   href="/login"
                   className="f6 link dim white db"
                 >
                   Already have an account ? Login
-        </a>
-
+                </a>
               </div>
             </form>
           </main>

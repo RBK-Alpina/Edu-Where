@@ -37,11 +37,10 @@ class Form extends React.Component {
         headers: { token }
       })
         .done(res => this.setState({ done: true }))
-        // .fail(err => this.setState({ fail: true }))
-        .fail(err => window.location.pathname = "/login")
+        .fail(err => this.setState({ fail: true }))
     };
   }
-  redirection(msg) {
+  redirection() {
     return (
       <div>
         <h1>You need to be connected to post an announce</h1>
