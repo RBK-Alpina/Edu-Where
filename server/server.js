@@ -26,6 +26,7 @@ app.use("/announces", announces);
 app.use("/announce", announce);
 app.use("/auth", authRoute);
 app.use("/update", updates);
+
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../react-client/dist", "index.html"));
 });

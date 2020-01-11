@@ -37,7 +37,8 @@ class Form extends React.Component {
         headers: { token }
       })
         .done(res => this.setState({ done: true }))
-        .fail(err => this.setState({ fail: true }))
+        // .fail(err => this.setState({ fail: true }))
+        .fail(err => window.location.pathname = "/login")
     };
   }
   redirection(msg) {
@@ -69,17 +70,16 @@ class Form extends React.Component {
           onChange={this.change}
         />
         <br />
-        <select name="categorie" onChange={this.change}
-        >
-          {
-            this.state.categories.map((elem, i) =>
-              <option value={elem} key={i}>{elem}</option>
-            )
-          }
-        </select>
+        <input
+          name="categorie"
+          placeholder="categorie"
+          value={this.state.categorie}
+          onChange={this.change}
+        />
         <br />
         <input
           name="phone"
+          type="phone"
           placeholder="Enter your phoneNumber"
           value={this.state.phone}
           onChange={this.change}
@@ -87,6 +87,7 @@ class Form extends React.Component {
         <br />
         <input
           name="price"
+          type="number"
           placeholder="Enter your price"
           value={this.state.price}
           onChange={this.change}
