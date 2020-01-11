@@ -1,6 +1,6 @@
 import React from "react";
 import $ from "jquery";
-import Rating from './Rating.jsx'
+import Ratings from './Rating.jsx'
 import NavBar from '../nav.jsx';
 
 class Announce extends React.Component {
@@ -31,7 +31,7 @@ class Announce extends React.Component {
         <h3>{this.state.info.description}</h3>
         <h3>{this.state.info.price} DT</h3>
         <h3>{this.state.info.rating} Stars</h3>
-        <Rating data={this.state.info} />
+        <Ratings data={this.state.info} />
       </div>
     )
   }

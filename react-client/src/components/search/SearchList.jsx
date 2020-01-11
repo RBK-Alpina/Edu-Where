@@ -26,10 +26,6 @@ class SearchList extends Component {
     let categorie = window.query;
     await this.getAnnounces(categorie)
   }
-  async componentDidUpdate() {
-    let categorie = window.query;
-    await this.getAnnounces(categorie)
-  }
   getAnnounces(categorie) {
     $.get(`/announces/${categorie}`).then(res => {
       this.setState({ teachers: res });
