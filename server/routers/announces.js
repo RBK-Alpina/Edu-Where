@@ -12,6 +12,7 @@ router.delete("/delete", verifyToken, (req, res) => {
 
 router.post("/add", verifyToken, (req, res) => {
   let { region, price, phone, categorie, description } = req.body;
+  if (!req.user.user) req.user.user = req.user;
   let { firstName, lastName, email } = req.user.user;
   let announce = {
     firstName,
