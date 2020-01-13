@@ -3,14 +3,16 @@ import $ from "jquery";
 import Ratings from './Rating.jsx'
 import NavBar from '../nav.jsx';
 
+//this component is responsible for updating the views for the announce
 class Announce extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      info: {},
+      info: {},// helps us retrieve multiple data from it about the announce such as firstName , lastName and price ...
     }
   }
 
+  //it will update the number of views once upon click
   componentWillMount() {
     let id = window.location.pathname.split('/')[1]
     $.ajax({
@@ -37,7 +39,7 @@ class Announce extends React.Component {
     return (
       <div>
         <NavBar />
-        <div className="flex items-center lh-copy pa3 ph0-l bb b--black-10" style={{ position: "fixed", top: "20%", right: "50%", transform: "translate(50%,50%)", width : "60vw" }}>
+        <div className="flex items-center lh-copy pa3 ph0-l bb b--black-10" style={{ position: "fixed", top: "20%", right: "50%", transform: "translate(50%,50%)", width: "60vw" }}>
           <div className='br b--black-50'>
             <img
               className="w2 h2 w4-ns h4-ns br2"
@@ -58,18 +60,16 @@ class Announce extends React.Component {
             <span className='f5 db black-70 pa2'>
               {this.state.info.description}
             </span>
-
           </div>
           <div className=" pl3 center ph5 ">
             <span className="f3 db black-70 pa2">
               {this.state.info.email}
             </span>
-
             <span className='f3 db black-70 pa2'>
               {this.state.info.phone}
             </span>
             <span className='f3 db black-70 pa2'>
-            Price : {this.state.info.price} DT
+              Price : {this.state.info.price} DT
             </span>
           </div>
           <div className='pl3 center ph5'>

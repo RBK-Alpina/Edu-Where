@@ -17,7 +17,7 @@ router.patch("/ratings", (req, res) => {
       return (user.rating + rating) / 2;
     })
     .then(ratings => db.updateRating(id, ratings))
-    .then(updatedData => res.send("updated"))
+    .then(updatedData => res.send(updatedData))
     .catch(err => console.log(err));
 });
 module.exports = router;

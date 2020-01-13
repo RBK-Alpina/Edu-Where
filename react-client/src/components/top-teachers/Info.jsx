@@ -2,18 +2,20 @@ import React from "react";
 import $ from "jquery";
 import { Redirect } from 'react-router-dom';
 
+//this component allows us to render dynamically the data
 class Info extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      info: this.props.data[0],
-      counter: 1,
+      info: this.props.data[0],      //this element will always contain one data depending on the counter
+      counter: 1,       //this element will play the role of an index
       clicked: false,
       redirect: ""
     }
     this.sendID = this.sendID.bind(this);
   }
 
+  //this function will help us to to change the data in the state in a dynamic way
   componentWillMount() {
     setInterval(() => {
       if (this.state.counter === 3) {
@@ -29,10 +31,11 @@ class Info extends React.Component {
   sendID() {
     this.setState({ clicked: true })
   }
+
+  //this functions redirects the user to a specefic announce
   RenderTheComponant() {
     return <Redirect to={`/${this.state.info._id}`} />
   }
-
 
   render() {
     const elem = Math.floor(this.state.info.rating);
