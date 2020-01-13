@@ -17,24 +17,30 @@ class SearchList extends Component {
     this.state = {
       teachers: [],
       categorie: "",
+      fail: false,
       searchQuery: ""
     };
     this.inputHandler = this.inputHandler.bind(this);
     this.onSubmit = this.onSubmit.bind(this)
   }
   async componentDidMount() {
-    let categorie = window.query;
+    let categorie = window.query || 'no';
     await this.getAnnounces(categorie)
   }
   getAnnounces(categorie) {
     $.get(`/announces/${categorie}`).then(res => {
-      this.setState({ teachers: res });
+      if (res.length) {
+        return this.setState({ teachers: res });
+      } else {
+        this.setState({ fail: true })
+      }
     });
   }
   async onSubmit(event) {
     event.preventDefault();
-    let categorie = this.state.categorie;
+    let categorie = this.state.categorie || 'no';
     await this.getAnnounces(categorie)
+    this.setState({ categorie: '' })
   }
   inputHandler(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -62,7 +68,6 @@ class SearchList extends Component {
           </div>
         </div>
         <main className="pa4 white center" style={{ width: "80vw" }}>
-          {/* */}
 
           {/* <section className="mw9 center ph3-ns" style={{ position: 'absolute', top: '210%', right: '50%', transform: 'translate(50%, -25%)', opacity: '1', width:"80vw"}}> */}
           <section className="cf ph2-ns">
