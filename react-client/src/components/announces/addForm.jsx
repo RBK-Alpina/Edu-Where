@@ -28,7 +28,7 @@ class Form extends React.Component {
     let token = localStorage.getItem('token')
     if (this.validation()) {
       document.querySelector('.error').innerText = this.validation();
-      document.querySelector('.error').style.display = "block";
+      document.querySelector('.error').style.display = "inline";
     } else {
       $.ajax({
         url: "/announces/add",
@@ -60,7 +60,125 @@ class Form extends React.Component {
 
   render() {
     return (
-      <div>
+      <div >
+        <NavBar />
+        <div className=" cover bg-center w-100 vh-100 dt" style={{
+          backgroundImage: `url(https://i.ibb.co/55dn7rm/students-background.jpg)`,
+          position: 'fixed', top: '20%', right: '50%', transform: 'translate(50%, -7.5%)'
+        }}>
+        </div>
+
+          <main className="pa4 white w-40" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
+          <div className='ba bw1 b--white pa4 vh-60 br3' style={{ backgroundColor: 'rgba(45,107,158, 0.8)' }}>
+            <form className="measure center">
+              <fieldset
+                id="sign_up"
+                className="ba b--transparent ph0 mh0"
+              >
+                <legend className="f2 center fw6 ph0 mh0">
+                  Add a new announce
+          </legend>
+                <div className="mt3">
+                  <label
+                    className="db fw6 lh-copy f3"
+                  >
+                Region
+                  </label>
+                  <input
+                    className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
+                    name="region"
+                    placeholder="region"
+                    value={this.state.region}
+                    onChange={this.change}
+                  />
+                </div>
+                <div className="mt3">
+                  <label
+                    className="db fw6 lh-copy f3"
+                    for="email-address"
+                  >
+                    Categorie
+                  </label>
+                  <input
+                    className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
+                    name="categorie"
+                    placeholder="categorie"
+                    value={this.state.categorie}
+                    onChange={this.change}
+                  />
+                </div>
+                <div className="mt3">
+                  <label
+                    className="db fw6 lh-copy f3"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
+                    name="phone"
+                    type="phone"
+                    placeholder="Enter your phoneNumber"
+                    value={this.state.phone}
+                    onChange={this.change}
+                  />
+                </div>
+                <div className="mv3">
+                  <label
+                    className="db fw6 lh-copy f3"
+                  >
+                    Price
+                  </label>
+                  <input
+                    className="b pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
+                    name="price"
+                    type="number"
+                    placeholder="Enter your price"
+                    value={this.state.price}
+                    onChange={this.change}
+                  />
+                </div>
+                <div className="mv3">
+                  <label
+                    className="db fw6 lh-copy f3"
+                  >
+                    Description
+                  </label>
+                  <input
+                    className="b pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
+                    name="description"
+                    placeholder="Enter your description"
+                    value={this.state.description}
+                    onChange={this.change}
+                  />
+                </div>
+              </fieldset>
+              <div className="dtc v-mid">
+                <input
+                  className="br3 dib v-mid b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white "
+                  type="submit"
+                  value="Submit"
+                  onClick={this.onSubmit}
+                />
+                <h4 className="error tc orange ph5" style={{ display: "none" }}></h4>
+              </div>
+            </form>
+              {this.state.done && <Redirect to="/" />}
+              {this.state.fail && this.redirection()}
+            </div>
+          </main>
+      </div>     
+    );
+  }
+}
+
+export default Form;
+
+
+
+
+
+
+     {/*  <div>
         <NavBar />
         <input
           name="region"
@@ -97,14 +215,11 @@ class Form extends React.Component {
           placeholder="Enter your description"
           value={this.state.description}
           onChange={this.change}
-        ></textarea>
+        >
+        </textarea>
+
         <button onClick={this.onSubmit}>Submit</button>
         <h1 className="error" style={{ display: "none" }}></h1>
         {this.state.done && <Redirect to="/" />}
         {this.state.fail && this.redirection()}
-      </div >
-    );
-  }
-}
-
-export default Form;
+      </div >*/}

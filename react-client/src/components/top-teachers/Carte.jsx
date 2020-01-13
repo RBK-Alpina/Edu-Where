@@ -34,10 +34,10 @@ class Carte extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="f4 f3-m f2-l tc fw2  black-50 ma4">Featured Teachers</div>
+      <div style={{height :'80vh'}}>
+        <div className="f1 tc fw2  black-60 ma4">Featured Teachers</div>
         <hr className="measure-wide center" />
-        <section className="cf pt4 pb2 mw8 center">
+        <section className="cf pt4 pb2 center" style={{ width: '70vw' }}>
           {
             Object.keys(this.state.data).map((elm, i) => (
               <div key={i} >
@@ -45,7 +45,7 @@ class Carte extends React.Component {
                   <div className="br2 ba dark-gray tc b--black-10">
                     <div className="aspect-ratio aspect-ratio--16x9">
                       <a className="aspect-ratio--object db overflow-hidden" href="#">
-                        <div className="aspect-ratio--object grow dim cover">
+                        <div className="aspect-ratio--object grow dim cover pa2">
                           <Info data={this.state.data[elm]} />
                         </div>
                       </a>

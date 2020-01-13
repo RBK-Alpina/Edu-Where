@@ -36,10 +36,10 @@ class Search extends Component {
                 <h1 className="fw1 f3 white-80 mt3 mb4">We help you get connected with our teachers</h1>
                 <div id="form" className='tc'>
                   <div className='mainSearch'>
-                    <input className="tc br3 f8 white ba b--white grow v-mid dib no-underline ph5 pv2 mb3 bg-transparent" type="search" name="search" value={this.state.searchInput} onChange={this.onChange} />
+                    <input className="tc br3 f9 white ba b--white v-mid dib no-underline ph5 pv3 mb3 bg-transparent w-50 f5" type="search" name="search" value={this.state.searchInput} onChange={this.onChange} />
                   </div>
                   {/*<button className="f6 no-underline grow dib v-mid white ba b--white ph3 pv2 mb3" type='submit' onClick={this.onSubmit}>Search</button>*/}
-                  <a className="f6 br3 no-underline grow dib v-mid white ba b--white ph3 pv2 mb3" href="#" onClick={this.onSubmit} >Search by categories</a>
+                  <a className="f9 br3 no-underline  dib v-mid white ba b--white ph3 pv2 mb3 hover-white" href="#" onClick={this.onSubmit} >Search by categories</a>
                   {this.state.found && this.goToResult()}
                 </div>
               </div>

@@ -50,13 +50,17 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div>
+      <div >
         <NavBar />
-        <div className="cover bg-center w-100 vh-75 dt" style={{
-          backgroundImage: `url(https://i.ibb.co/5nnH0w2/bg.jpg)`,
-          position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)'
+
+        <div className=" cover bg-center w-100 vh-100 dt" style={{
+          backgroundImage: `url(https://i.ibb.co/55dn7rm/students-background.jpg)`,
+          position: 'fixed', top: '20%', right: '50%', transform: 'translate(50%, -7.5%)'
         }}>
-          <main className="pa4 white" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -25%)', opacity: '1' }}>
+        </div>
+
+          <main className="pa4 white w-40" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
+          <div className='ba bw1 b--white pa4 vh-60 br3' style={{ backgroundColor: 'rgba(45,107,158, 0.8)' }}>
             <form className="measure center">
               <fieldset
                 id="sign_up"
@@ -73,7 +77,7 @@ class SignUp extends React.Component {
                     First Name*
           </label>
                   <input
-                    className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100"
+                    className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
                     type="email"
                     id="email-address"
                     value={this.state.firstName}
@@ -89,7 +93,7 @@ class SignUp extends React.Component {
                     Last Name*
           </label>
                   <input
-                    className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100"
+                    className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
                     type="email"
                     id="email-address"
                     value={this.state.lastName}
@@ -105,7 +109,7 @@ class SignUp extends React.Component {
                     Email*
             </label>
                   <input
-                    className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100"
+                    className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
                     type="email"
                     name="email"
                     id="email-address"
@@ -122,7 +126,7 @@ class SignUp extends React.Component {
                     Password*
           </label>
                   <input
-                    className="b pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100"
+                    className="b pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
                     type="password"
                     name="password"
                     id="password"
@@ -138,7 +142,7 @@ class SignUp extends React.Component {
                     Confirm Password*
           </label>
                   <input
-                    className="b pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100"
+                    className="b pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
                     type="password"
                     name="confirmedPassword"
                     id="confirmedPassword"
@@ -147,9 +151,9 @@ class SignUp extends React.Component {
                   />
                 </div>
               </fieldset>
-              <div className="">
+              <div className="dtc v-mid">
                 <input
-                  className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib"
+                  className="br3 dib v-mid b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f5 dib white"
                   type="submit"
                   value="Signup"
                   onClick={this.sendInfo}
@@ -165,8 +169,8 @@ class SignUp extends React.Component {
                 </a>
               </div>
             </form>
+            </div>
           </main>
-        </div>
       </div>
     );
   }
