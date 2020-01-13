@@ -2,12 +2,12 @@ import React from "react";
 import Info from './Info.jsx'
 import $ from "jquery";
 
-
+//this component is the carte component that will contain the data recieved from the Info component and appear in  our home page under the featured teachers
 class Carte extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: {}
+      data: {} // this element will be fild with data and will be passed to the Info component as props
     }
   }
 
@@ -16,6 +16,7 @@ class Carte extends React.Component {
     this.setState({ data })
   }
 
+  //this asyncronous function allows us to fill the data in the state with the retrieved data from our database using shorthand ajax
   async getData() {
     const data = {
       math: [],
@@ -34,7 +35,7 @@ class Carte extends React.Component {
 
   render() {
     return (
-      <div style={{height :'80vh'}}>
+      <div style={{ height: '80vh' }}>
         <div className="f1 tc fw2  black-60 ma4">Featured Teachers</div>
         <hr className="measure-wide center" />
         <section className="cf pt4 pb2 center" style={{ width: '70vw' }}>

@@ -5,6 +5,7 @@ import NavBar from './nav.jsx';
 import Footer from './footer.jsx';
 import About from './about.jsx'
 
+//this component represents our home page, it contains all the components that form it
 const Home = () => (
   <div>
     <NavBar />

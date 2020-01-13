@@ -3,26 +3,28 @@ import $ from "jquery";
 import NavBar from '../nav.jsx';
 import { Redirect } from 'react-router-dom';
 
+//this component is responsible for the form that allows the user to create a new announce
 class Form extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      categories: ["", 'Math', 'Physics', 'It', 'Science', 'Philosophy', 'Geography'],
-      categorie: "",
-      region: "",
-      phone: "",
-      description: "",
-      price: ""
+      categorie: "", //  gets the value of the categorie input so it can be saved in the database
+      region: "",           //  gets the value of the region input so it can be saved in the database
+      phone: "",            //  gets the value of the phone input so it can be saved in the database
+      description: "",      //  gets the value of the description input so it can be saved in the database
+      price: ""             //  gets the value of the price input so it can be saved in the database
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.change = this.change.bind(this);
   }
 
+  //each element of the state will get the value of the input
   change(e) {
     document.querySelector('.error').style.display = "none";
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  //Once the user submit all infos will be sent and stored in the database
   onSubmit(e) {
     e.preventDefault();
     let token = localStorage.getItem('token')
@@ -40,6 +42,8 @@ class Form extends React.Component {
         .fail(err => this.setState({ fail: true }))
     };
   }
+
+  //In case the user want to post an announce without being connected . it will redirect him to another page where it tells him to login or sign up
   redirection() {
     return (
       <div>
@@ -51,6 +55,8 @@ class Form extends React.Component {
       </div>
     )
   }
+
+  //impose on the user the fact that he must fill the inputs
   validation() {
     for (let key in this.state) {
       if (this.state[key] === "" && key !== "description") return `${key} is required`
@@ -67,8 +73,7 @@ class Form extends React.Component {
           position: 'fixed', top: '20%', right: '50%', transform: 'translate(50%, -7.5%)'
         }}>
         </div>
-
-          <main className="pa4 white w-40" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
+        <main className="pa4 white w-40" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
           <div className='ba bw1 b--white pa4 vh-60 br3' style={{ backgroundColor: 'rgba(45,107,158, 0.8)' }}>
             <form className="measure center">
               <fieldset
@@ -82,7 +87,7 @@ class Form extends React.Component {
                   <label
                     className="db fw6 lh-copy f3"
                   >
-                Region
+                    Region
                   </label>
                   <input
                     className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
@@ -162,64 +167,13 @@ class Form extends React.Component {
                 <h4 className="error tc orange ph5" style={{ display: "none" }}></h4>
               </div>
             </form>
-              {this.state.done && <Redirect to="/" />}
-              {this.state.fail && this.redirection()}
-            </div>
-          </main>
-      </div>     
+            {this.state.done && <Redirect to="/" />}
+            {this.state.fail && this.redirection()}
+          </div>
+        </main>
+      </div>
     );
   }
 }
 
 export default Form;
-
-
-
-
-
-
-     {/*  <div>
-        <NavBar />
-        <input
-          name="region"
-          placeholder="region"
-          value={this.state.region}
-          onChange={this.change}
-        />
-        <br />
-        <input
-          name="categorie"
-          placeholder="categorie"
-          value={this.state.categorie}
-          onChange={this.change}
-        />
-        <br />
-        <input
-          name="phone"
-          type="phone"
-          placeholder="Enter your phoneNumber"
-          value={this.state.phone}
-          onChange={this.change}
-        />
-        <br />
-        <input
-          name="price"
-          type="number"
-          placeholder="Enter your price"
-          value={this.state.price}
-          onChange={this.change}
-        />
-        <br />
-        <textarea
-          name="description"
-          placeholder="Enter your description"
-          value={this.state.description}
-          onChange={this.change}
-        >
-        </textarea>
-
-        <button onClick={this.onSubmit}>Submit</button>
-        <h1 className="error" style={{ display: "none" }}></h1>
-        {this.state.done && <Redirect to="/" />}
-        {this.state.fail && this.redirection()}
-      </div >*/}

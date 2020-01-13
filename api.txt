@@ -1,0 +1,568 @@
+API Documentation:
+-------------------------------
+Notes before you start: In order for the routes to be implemented correctly, make sure you keep the following things in mind:
+- tags should be lowercase
+- categories should be lowercase
+
+Allowed HTTPs requests:
+PATCH     : To create resource
+POST    : Update resource
+GET     : Get a resource or list of resources
+DELETE  : To delete resource
+
+*******************************
+Show Announce
+
+URL : /announce/:id
+
+Method: GET
+
+URL Params Required: id=[String]
+
+Data Params : None
+
+Success Response:
+
+Code: 200
+Content Example: Object
+{
+  "_id": "5e14d7bf1d5e693f6c2f5b66",
+  firstName: "Alex",
+  lastName: "Smith",
+  email: "Alex@gmail.com",
+  categorie: "Math",
+  price: "50",
+  region: "New York",
+  views: 52,
+  rating: 3,
+  phone: "26486495",
+  "__v": 0,
+  description: "Teaching for 5 years in a high school"
+}
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 500
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/announce/5e14d7bf1d5e693f6c2f5b66",
+    dataType: "json",
+    type : "GET",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+
+*******************************
+Show Best 3
+
+URL /categorie/:id
+
+Method: GET
+
+URL Params Required: id=[String]
+
+Data Params : None
+
+Success Response:
+
+Code: 200
+Content Example: Array of Objects
+[
+  {
+    "_id": "5e14d7bf1d5e693f6c2f5b66",
+    firstName: "Alex",
+    lastName: "Smith",
+    email: "Alex@gmail.com",
+    categorie: "Math",
+    price: "50",
+    region: "New York",
+    views: 52,
+    rating: 3,
+    phone: "26486495",
+    "__v": 0,
+    description: "Teaching for 5 years in a high school"
+  },
+]
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 500
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/categorie/math",
+    dataType: "json",
+    type : "GET",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+*******************************
+Delete an Announce
+
+This route is protected so you need to send a valid token on the request headers as an Object {'token' : "koadzo65e6a5ez5f6zef5"}
+
+URL : /announces/delete
+
+Method: DELETE
+
+URL Params : None
+
+Data Params : {
+  id: "5e14d7bf1d5e693f6c2f5b66"
+}
+
+Success Response:
+
+Code: 204
+Content Example: Array of Objects
+[
+  {
+    "_id": "5e14d7bf1d5e693f6c2f5b66",
+    firstName: "Alex",
+    lastName: "Smith",
+    email: "Alex@gmail.com",
+    categorie: "Math",
+    price: "50",
+    region: "New York",
+    views: 52,
+    rating: 3,
+    phone: "26486495",
+    "__v": 0,
+    description: "Teaching for 5 years in a high school"
+  },
+]
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 500
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/announces/delete",
+    dataType: "json",
+    headers : {
+      'token' : "koadzo65e6a5ez5f6zef5"
+    },
+    type : "DELETE",
+    data : {
+      id : "5e14d7bf1d5e693f6c2f5b66"
+    },
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+***************************************
+Add an Announce
+
+This route is protected so you need to send a valid token on the request headers as an Object {'token' : "koadzo65e6a5ez5f6zef5"}
+
+URL : /announces/add
+
+Method: POST
+
+URL Params : None
+
+Data Params : {
+  categorie: "Math",
+  price: "50",
+  region: "New York",
+  phone: "26486495",
+  description: "Teaching for 5 years in a high school"
+}
+
+Success Response:
+
+Code: 201
+Content Example:
+{
+  "_id": "5e14d7bf1d5e693f6c2f5b66",
+  firstName: "Alex",
+  lastName: "Smith",
+  email: "Alex@gmail.com",
+  categorie: "Math",
+  price: "50",
+  region: "New York",
+  views: 52,
+  rating: 3,
+  phone: "26486495",
+  "__v": 0,
+  description: "Teaching for 5 years in a high school"
+}
+
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 500
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/announces/add",
+    dataType: "json",
+    headers : {
+      'token' : "koadzo65e6a5ez5f6zef5"
+    },
+    type : "POST",
+    data : {
+      categorie: "Math",
+      price: "50",
+      region: "New York",
+      phone: "26486495",
+      description: "Teaching for 5 years in a high school"
+    },
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+
+**********************************************************
+Get all The Announces for a specific user
+
+This route is protected so you need to send a valid token on the request headers as an Object {'token' : "koadzo65e6a5ez5f6zef5"}
+
+URL : /announces/getAll
+
+Method: GET
+
+URL Params : None
+
+Data Params : None
+
+Success Response:
+
+Code: 204
+Content Example: Array of Objects
+[
+  {
+    "_id": "5e14d7bf1d5e693f6c2f5b66",
+    firstName: "Alex",
+    lastName: "Smith",
+    email: "Alex@gmail.com",
+    categorie: "Math",
+    price: "50",
+    region: "New York",
+    views: 52,
+    rating: 3,
+    phone: "26486495",
+    "__v": 0,
+    description: "Teaching for 5 years in a high school"
+  },
+]
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 500
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/announces/getAll",
+    dataType: "json",
+    headers : {
+      'token' : "koadzo65e6a5ez5f6zef5"
+    },
+    type : "GET",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+*************************************************************
+Get all The Announces by categorie
+
+URL : /announces/:id
+
+Method: GET
+
+URL Params Required: id=[String]
+
+Data Params : None
+
+Success Response:
+
+Code: 200
+Content Example: Array of Objects
+[
+  {
+    "_id": "5e14d7bf1d5e693f6c2f5b66",
+    firstName: "Alex",
+    lastName: "Smith",
+    email: "Alex@gmail.com",
+    categorie: "Math",
+    price: "50",
+    region: "New York",
+    views: 52,
+    rating: 3,
+    phone: "26486495",
+    "__v": 0,
+    description: "Teaching for 5 years in a high school"
+  },
+]
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 500
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/announces/math",
+    dataType: "json",
+    type : "GET",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+*****************************************************************
+Update The views of an announce
+
+URL : /update/views
+
+Method: PATCH
+
+URL Params : None
+
+Data Params : {
+  id: "5e14d7bf1d5e693f6c2f5b66"
+}
+
+Success Response:
+
+Code: 200
+Content Example: Object
+{
+  "_id": "5e14d7bf1d5e693f6c2f5b66",
+  firstName: "Alex",
+  lastName: "Smith",
+  email: "Alex@gmail.com",
+  categorie: "Math",
+  price: "50",
+  region: "New York",
+  views: 52,
+  rating: 3,
+  phone: "26486495",
+  "__v": 0,
+  description: "Teaching for 5 years in a high school"
+}
+
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 500
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/update/views",
+    dataType: "json",
+    type : "PATCH",
+    data : {
+      id: "5e14d7bf1d5e693f6c2f5b66"
+    },
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+
+*****************************************************************
+Update The ratings of an announce
+
+URL : /update/ratings
+
+Method: PATCH
+
+URL Params : None
+
+Data Params : {
+  id: "5e14d7bf1d5e693f6c2f5b66"
+}
+
+Success Response:
+
+Code: 200
+Content Example: Object
+{
+  "_id": "5e14d7bf1d5e693f6c2f5b66",
+  firstName: "Alex",
+  lastName: "Smith",
+  email: "Alex@gmail.com",
+  categorie: "Math",
+  price: "50",
+  region: "New York",
+  views: 52,
+  rating: 3,
+  phone: "26486495",
+  "__v": 0,
+  description: "Teaching for 5 years in a high school"
+}
+
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 500
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/update/ratings",
+    dataType: "json",
+    type : "PATCH",
+    data : {
+      id: "5e14d7bf1d5e693f6c2f5b66"
+    },
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+****************************************************************
+Sign Up
+
+This route is used for sign up it will take an object and check if that user exist else it will hash the password and add the user to the database also it will generate a token that will be returned with the Response
+
+URL : /auth/signUp
+
+Method: POST
+
+URL Params : None
+
+Data Params : {
+  firstName: "Alex",
+  lastName: "Smith",
+  email: "Alex@gmail.com",
+  password : "password",
+  confirmedPassword : "password",
+}
+
+Success Response:
+
+Code: 200
+Content Example:
+{
+  saved : true,
+  user : {
+    "_id": "5e14d7bf1d5e693f6c2f5b66",
+    firstName: "Alex",
+    lastName: "Smith",
+    email: "Alex@gmail.com",
+    password : "poazd45dza4az6d46az4d6azd6a5zd65a5d6a5zd65ad6az65dz5a65dz",
+    "__v": 0
+  },
+  token : '5adz65zda5d9a5d9za5d9az5d9z59a5z9d5azd9daz959za5d5d9z5'
+}
+
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: {saved : false, msg : "There is already an account with this email" }
+OR
+
+Sample Call:
+
+  $.ajax({
+    url: "/auth/signUp",
+    dataType: "json",
+    type : "POST",
+    data : {
+      firstName: "Alex",
+      lastName: "Smith",
+      email: "Alex@gmail.com",
+      password : "password",
+      confirmedPassword : "password",
+    },
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+****************************************************************
+Sign Up
+
+This route is used for login it will take an object and check if that user exist and if the password is right also it will generate a token that will be returned with the Response
+
+URL : /auth/login
+
+Method: POST
+
+URL Params : None
+
+Data Params : {
+  email: "Alex@gmail.com",
+  password : "password"
+}
+
+Success Response:
+
+Code: 200
+Content Example:
+{
+  found : true,
+  token : '5adz65zda5d9a5d9za5d9az5d9z59a5z9d5azd9daz959za5d5d9z5'
+}
+
+
+Error Response:
+
+Code: 404 NOT FOUND
+Content: {saved : false, msg : "There is already an account with this email" }
+OR
+
+Sample Call:
+
+  $.ajax({
+    url: "/auth/login",
+    dataType: "json",
+    type : "POST",
+    data : {
+      email: "Alex@gmail.com",
+      password : "password"
+    },
+    success : function(r) {
+      console.log(r);
+    }
+  });

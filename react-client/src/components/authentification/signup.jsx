@@ -2,9 +2,11 @@ import React from "react";
 import $ from "jquery";
 import NavBar from '../nav.jsx';
 
+//this component represents the signup page
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
+    //this elements represents the informations that should be typed by the user
     this.state = {
       logged: false,
       firstName: "",
@@ -16,10 +18,14 @@ class SignUp extends React.Component {
     this.saveValue = this.saveValue.bind(this)
     this.sendInfo = this.sendInfo.bind(this);
   }
+
+  //this function save the data in the state with the onChange
   saveValue(e) {
     document.querySelector('.error').style.display = "none";
     this.setState({ [e.target.name]: e.target.value })
   }
+
+  //this function aalows us to send a post request to the api after handling the errors
   sendInfo(e) {
     e.preventDefault();
     if (this.state.firstName === "") {
@@ -52,14 +58,12 @@ class SignUp extends React.Component {
     return (
       <div >
         <NavBar />
-
         <div className=" cover bg-center w-100 vh-100 dt" style={{
           backgroundImage: `url(https://i.ibb.co/55dn7rm/students-background.jpg)`,
           position: 'fixed', top: '20%', right: '50%', transform: 'translate(50%, -7.5%)'
         }}>
         </div>
-
-          <main className="pa4 white w-40" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
+        <main className="pa4 white w-40" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
           <div className='ba bw1 b--white pa4 vh-60 br3' style={{ backgroundColor: 'rgba(45,107,158, 0.8)' }}>
             <form className="measure center">
               <fieldset
@@ -169,8 +173,8 @@ class SignUp extends React.Component {
                 </a>
               </div>
             </form>
-            </div>
-          </main>
+          </div>
+        </main>
       </div>
     );
   }

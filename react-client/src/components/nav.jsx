@@ -1,5 +1,6 @@
 import React from 'react';
 
+//this component represents our navbar and it's different parts
 const NavBar = () => (
   <header className="bg-white w-100 ph3 hover-blackpv3 pv4-ns ph4-m ph5-l bb b--light-gray" style={{ overflow: 'visible', position: 'fixed', top: '0', width: '100%' }}>
     <nav className="tc">

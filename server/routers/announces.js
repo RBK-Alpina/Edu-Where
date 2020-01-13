@@ -6,7 +6,7 @@ const router = express.Router();
 router.delete("/delete", verifyToken, (req, res) => {
   let { firstName, lastName, email } = req.user.user;
   db.findAndDelete(req.body.id, firstName, lastName).then(data =>
-    res.status(200).json(data)
+    res.status(204).json(data)
   );
 });
 
@@ -32,10 +32,11 @@ router.post("/add", verifyToken, (req, res) => {
 router.get("/getAll", verifyToken, (req, res) => {
   let { firstName, lastName, email } = req.user.user;
   db.findAllbyName(firstName, lastName).then(result =>
-    res.status(200).json(result)
+    res.status(201).json(result)
   );
   // db.findAllbyEmail(email).then(result => res.send(result));
 });
+
 
 router.get("/:id", (req, res) => {
   db.findAll(req.params.id.toLowerCase()).then(result => {
