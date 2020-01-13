@@ -95,7 +95,7 @@ class MyAnnounces extends React.Component {
                   Price : {elm.price} DT
             </span>
               </div>
-              <div className="f1-ns grow dib no-underline" id={elm._id} onClick={this.deleteAnnounce}> <i className="fa fa-trash"></i></div>
+              <div className="f1-ns grow dib no-underline" id={elm._id} onClick={this.deleteAnnounce}> <i id={elm._id} className="fa fa-trash"></i></div>
             </div>
           ))}
         </div>
