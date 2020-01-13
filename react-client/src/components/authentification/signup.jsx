@@ -41,7 +41,6 @@ class SignUp extends React.Component {
             document.querySelector('.error').innerText = result.msg;
             document.querySelector('.error').style.display = "inline";
           } else {
-            alert(result.token)
             localStorage.setItem('token', result.token)
             window.location.pathname = "/";
           }
@@ -60,8 +59,8 @@ class SignUp extends React.Component {
         }}>
         </div>
 
-        <main className="pa4 white" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
-          <div className='ba bw1 b--white pa4 vh-60 br3' style={{ backgroundColor: 'rgba(0,0,0, 0.1)' }}>
+          <main className="pa4 white w-40" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
+          <div className='ba bw1 b--white pa4 vh-60 br3' style={{ backgroundColor: 'rgba(45,107,158, 0.8)' }}>
             <form className="measure center">
               <fieldset
                 id="sign_up"
@@ -154,7 +153,7 @@ class SignUp extends React.Component {
               </fieldset>
               <div className="dtc v-mid">
                 <input
-                  className="dib v-mid b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white"
+                  className="br3 dib v-mid b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f5 dib white"
                   type="submit"
                   value="Signup"
                   onClick={this.sendInfo}
@@ -170,8 +169,8 @@ class SignUp extends React.Component {
                 </a>
               </div>
             </form>
-          </div>
-        </main>
+            </div>
+          </main>
       </div>
     );
   }

@@ -13,24 +13,28 @@ class Teacher extends React.Component {
     return <Redirect to={`/${this.props.data._id}`} />
   }
   render() {
+     const elem = Math.floor(this.props.data.rating);
+    const stars = [];
+    let count = 0;
+      for (let i =0; i < 5; i++) {
+        if (count !== elem) {
+          stars.push(<span key={i} className="fa fa-star checked" style={{color: 'gold'}}></span>);
+          count++;
+        }else {
+          stars.push(<span className="fa fa-star" style={{color: 'lightGray'}}></span>)
+        }
+      }
     return (
-      <div>
-        <div
-          id={this.props.data._id}
-          onClick={this.changeState.bind(this)}
-          className="bg-light-blue dib br3 pa3 ma2 grow bw2 shadow-5 vh-30 mw5-m"
-          style={{ width: "250px" }}
-        >
-          <h2>{this.props.data.firstName}</h2>
-          <h3>{this.props.data.categorie}</h3>
-          <h1>{this.props.data.price} DT</h1>
-          <p>{this.props.data.description}</p>
-        </div>
+    <div id={this.props.data._id} onClick={this.changeState.bind(this)} className = "ba pa5">
+        <h3>{this.props.data.firstName} {this.props.data.lastName}</h3>
+        <h3>{this.props.data.region}</h3>
+        <h3>{this.props.data.email}</h3>
+        <h3>{this.props.data.phone}</h3>
+         <h3> Rated : {stars} </h3>
         {this.state.clicked && this.RenderTheComponant()}
-      </div>
+    </div>
     );
   }
 }
-
-
 export default Teacher;
+

@@ -12,6 +12,7 @@ class Ratings extends React.Component {
 
   handleChange(e) {
     let rate = $(':active').prevObject[0].activeElement.attributes[1].value
+
     $.ajax({
       url: '/update/ratings',
       method: 'PATCH',

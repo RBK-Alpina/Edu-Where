@@ -28,7 +28,7 @@ class Form extends React.Component {
     let token = localStorage.getItem('token')
     if (this.validation()) {
       document.querySelector('.error').innerText = this.validation();
-      document.querySelector('.error').style.display = "block";
+      document.querySelector('.error').style.display = "inline";
     } else {
       $.ajax({
         url: "/announces/add",
@@ -68,21 +68,21 @@ class Form extends React.Component {
         }}>
         </div>
 
-        <main className="pa4 white" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
-          <div className='ba bw1 b--white pa4 vh-60 br3' style={{ backgroundColor: 'rgba(0,0,0, 0.1)' }}>
+          <main className="pa4 white w-40" style={{ position: 'absolute', top: '25%', right: '50%', transform: 'translate(50%, -7.5%)' }}>
+          <div className='ba bw1 b--white pa4 vh-60 br3' style={{ backgroundColor: 'rgba(45,107,158, 0.8)' }}>
             <form className="measure center">
               <fieldset
                 id="sign_up"
                 className="ba b--transparent ph0 mh0"
               >
-                <legend className="f4 fw6 ph0 mh0">
+                <legend className="f2 center fw6 ph0 mh0">
                   Add a new announce
           </legend>
                 <div className="mt3">
                   <label
-                    className="db fw6 lh-copy f6"
+                    className="db fw6 lh-copy f3"
                   >
-                    Region
+                Region
                   </label>
                   <input
                     className="pa2 input-reset ba white bg-transparent hover-bg-white hover-black w-100 br3"
@@ -94,7 +94,7 @@ class Form extends React.Component {
                 </div>
                 <div className="mt3">
                   <label
-                    className="db fw6 lh-copy f6"
+                    className="db fw6 lh-copy f3"
                     for="email-address"
                   >
                     Categorie
@@ -109,7 +109,7 @@ class Form extends React.Component {
                 </div>
                 <div className="mt3">
                   <label
-                    className="db fw6 lh-copy f6"
+                    className="db fw6 lh-copy f3"
                   >
                     Phone Number
                   </label>
@@ -124,7 +124,7 @@ class Form extends React.Component {
                 </div>
                 <div className="mv3">
                   <label
-                    className="db fw6 lh-copy f6"
+                    className="db fw6 lh-copy f3"
                   >
                     Price
                   </label>
@@ -139,7 +139,7 @@ class Form extends React.Component {
                 </div>
                 <div className="mv3">
                   <label
-                    className="db fw6 lh-copy f6"
+                    className="db fw6 lh-copy f3"
                   >
                     Description
                   </label>
@@ -154,19 +154,19 @@ class Form extends React.Component {
               </fieldset>
               <div className="dtc v-mid">
                 <input
-                  className="dib v-mid b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white"
+                  className="br3 dib v-mid b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white "
                   type="submit"
                   value="Submit"
                   onClick={this.onSubmit}
                 />
-                <h4 className="error tc red pa3" style={{ display: "none" }}></h4>
+                <h4 className="error tc orange ph5" style={{ display: "none" }}></h4>
               </div>
             </form>
-            {this.state.done && <Redirect to="/" />}
-            {this.state.fail && this.redirection()}
-          </div>
-        </main>
-      </div>
+              {this.state.done && <Redirect to="/" />}
+              {this.state.fail && this.redirection()}
+            </div>
+          </main>
+      </div>     
     );
   }
 }
@@ -178,7 +178,7 @@ export default Form;
 
 
 
-{/*  <div>
+     {/*  <div>
         <NavBar />
         <input
           name="region"
