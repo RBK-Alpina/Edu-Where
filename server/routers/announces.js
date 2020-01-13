@@ -38,9 +38,9 @@ router.get("/getAll", verifyToken, (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  db.findAll(req.params.id.toLowerCase()).then(result =>
-    res.status(200).send(result)
-  );
+  db.findAll(req.params.id.toLowerCase()).then(result => {
+    res.status(200).send(result);
+  });
 });
 
 module.exports = router;
