@@ -1,8 +1,9 @@
-# Greenfield-project
 # EduWhere (GreenField_Project)
 
 >Project description
 Greenfield Project
+
+###Link to the deployed version: [DEPLOYED VERSION](https://plebs.herokuapp.com/)
 ## Team
 
   - __Product Owner__: [Anes-Marzooki](https://github.com/Anes-Marzooki)
