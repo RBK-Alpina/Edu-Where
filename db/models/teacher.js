@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const { Schema } = mongoose;
 
 const teacherSchema = mongoose.Schema({
   firstName: {
@@ -18,38 +19,45 @@ const teacherSchema = mongoose.Schema({
   password: {
     required: true,
     type: String
-  }
+  },
+  birthday: {
+    required: true,
+    type: Date
+  },
+  username: {
+    required: true,
+    type: String
+  },
+  classrooms: [{ type: Schema.Types.ObjectId, ref: "Classroom" }]
 });
 
-let Teacher = mongoose.model("Teacher ", teacherSchema);
+let Teacher = mongoose.model("Teacher", teacherSchema);
 
-//function that will hash the password and save it in the users collection
-//this function return a promise
-const saveTeacher = async (firstName, lastName, email, password) => {
+const saveTeacher = async (teacher) => {//teacher is object contain all necessary data :firstname,password..
   const salt = await bcrypt.genSalt();
-  const hashedPassword = await bcrypt.hash(password, salt);
-  let teacher= new Teacher({
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    password: hashedPassword
-  });
-  return teacher.save();
+  const hashedPassword = await bcrypt.hash(teacher.password, salt);
+  teacher.password = hashedPassword
+  let newTeacher = new Teacher(teacher);
+  return newTeacher.save();
 };
 
-//functio that will check if the user is already registred in the database or not
-//and check if the password is valid
-//this function return an object if the password match or false if the password dosen't match
-const findTeacher = (email, password) => {
-  return Teacher.findOne({ email }).then(async teacher => {
-    if (teacher) {
-      let pswd = await bcrypt.compare(password, teacher.password);
-      return { found: pswd, teacher };
-    } else {
-      return false;
-    }
-  });
+const findTeacher = async (username) => {
+  return Teacher.findOne({ username });
 };
+
+const updateTeacherClassroom = async (idteacher, idClassroom) => {
+  var teacher = await Teacher.findOneAndUpdate(
+    { _id: idteacher },
+    {
+      $push: { classrooms: idClassroom }
+    },
+    { new: true }
+  )
+}
+
+
+
 
 module.exports.saveTeacher = saveTeacher;
 module.exports.findTeacher = findTeacher;
+module.exports.updateTeacherClassroom = updateTeacherClassroom

@@ -1,21 +1,22 @@
 const mongoose = require("mongoose");
+
 require("dotenv").config();
 
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
-  `mongodb+srv://maher:${process.env.PSW}@cluster0-ztajo.mongodb.net/test?retryWrites=true&w=majority`,
+  'mongodb://localhost:27017/testttt',
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 mongoose.set("useCreateIndex", true);
 
 var db = mongoose.connection;
 
-db.on("error", function() {
+db.on("error", function () {
   console.log("mongoose connection error");
 });
 
-db.once("open", function() {
+db.once("open", function () {
   console.log("mongoose connected successfully");
 });
 

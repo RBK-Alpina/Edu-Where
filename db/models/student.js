@@ -1,7 +1,8 @@
-const mongoose = require("mongoose");
+var mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-let timestampPlugin = require('./plugins/timestamp')
-
+let timestampPlugin = require('../models/timestamp')
+require ('../index')
+const Schema = mongoose.Schema
 const studentSchema = mongoose.Schema({
   firstName: {
     required: true,
@@ -30,7 +31,7 @@ const studentSchema = mongoose.Schema({
 
   },
 
-  classrooms: [{ type: schema.Type.objectId, ref: "classroom" }]
+  classrooms: [{ type: Schema.Types.ObjectId, ref: "Classroom" }]
 });
 
 studentSchema.plugin(timestampPlugin)
@@ -43,18 +44,30 @@ async function addNewstudent(student) {
   const salt = await bcrypt.genSalt();
   const hashedPassword = await bcrypt.hash(student.password, salt);
   student.password = hashedPassword;
-  let student = new Student(student);
-  return student.save();
+  let newStudent = new Student(student);
+  return newStudent.save();
 }
 
-async function findStudent(username) {
-  const found = await Student.find({ username })
-  return found
+// async function findStudent(username) {
+//   const found = await Student.find({ username })
+//   return Student.findOne({ username });
 
-}
+// }
+const findStudent = async (username) => {
+  return Student.findOne({ username });
+};
 async function modifyStudent(username){
   const modify = await Student.update({ username})
 }
 
 module.exports.addNewstudent = addNewstudent;
 module.exports.findStudent = findStudent;
+module.exports.modifyStudent = modifyStudent;
+
+
+
+// console.log(addNewstudent({username:"Hamam", email: "hamam@gmail.com",password : "****",birthday: "11/1/1111", firstName: "HAmam",lastName: "Elmuratdh"}))
+findStudent('Hamam').then(res=>{
+  console.log(res)
+})
+// console.log( findStudent('Hamam'))
