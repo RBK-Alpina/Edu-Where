@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+let timestampPlugin = require('./plugins/timestamp')
 
 const studentSchema = mongoose.Schema({
   firstName: {
@@ -25,11 +26,14 @@ const studentSchema = mongoose.Schema({
   },
   username: {
     required: true,
-    type: String
+    type: String,
+
   },
+
   classrooms: [{ type: schema.Type.objectId, ref: "classroom" }]
 });
 
+studentSchema.plugin(timestampPlugin)
 //function that will hash the password and save it in the student collection
 //this function return a promise
 
@@ -48,9 +52,9 @@ async function findStudent(username) {
   return found
 
 }
-
-
-
+async function modifyStudent(username){
+  const modify = await Student.update({ username})
+}
 
 module.exports.addNewstudent = addNewstudent;
 module.exports.findStudent = findStudent;
