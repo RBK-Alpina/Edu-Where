@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //serving the react folder
-app.use(express.static(path.resolve(__dirname, "../react-client/dist")));
+// app.use(express.static(path.resolve(__dirname, "../react-client/dist")));
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

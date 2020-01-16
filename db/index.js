@@ -3,8 +3,7 @@ require("dotenv").config();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(
-  `mongodb+srv://maher:${process.env.PSW}@cluster0-ztajo.mongodb.net/test?retryWrites=true&w=majority`,
+mongoose.connect( 'mongodb://localhost:27017/education',
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 mongoose.set("useCreateIndex", true);
