@@ -67,7 +67,7 @@ module.exports.findStudent = findStudent;
 module.exports.modifyStudent = modifyStudent;
 
 /// testing
-modifyStudent('Hamam')
-findStudent('Hamam').then(res => {
-  console.log(res)
-})
+// modifyStudent('Hamam')
+// findStudent('Hamam').then(res => {
+//   console.log(res)
+// })
