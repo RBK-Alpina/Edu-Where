@@ -54,7 +54,7 @@ const signIn = async (request) => {// return object if existing user , false if 
 
           return new AuthResponse("success", details)
         }
-        return false//wrong  username or password
+        return wrongEntryPssword//wrong  username or password
       } else {
         student.findStudent(request.username)
           .then(user => {
@@ -66,14 +66,17 @@ const signIn = async (request) => {// return object if existing user , false if 
                 const token = jwt.sign(user, secret, {
                   expiresIn: expire
                 });
-                return { username: user.username, role: 'student', token: token }
+                const details = new Details(user.username, token, "student")
+                return new AuthResponse("success", details)
               }
-              return false
-            })
+              return wrongEntryPssword
+            }
+            else { return wrongEntryUsername })
       }
     })
-}
 
+}
+}
 class Details {
   constructor(username, token, role) {
     this.username = username;
@@ -91,6 +94,10 @@ class AuthResponse {
 
 const userExistsResponse = new AuthResponse("User Already Exists", {});
 const serverErrorResponse = new AuthResponse("Server Side Error", {});
+
+
+const wrongEntryPssword = new AuthResponse("wrong password", {});
+const wrongEntryUsername = new AuthResponse("wrong Username", {});
 
 module.exports.signIn = signIn;
 module.exports.signUp = signUp;
