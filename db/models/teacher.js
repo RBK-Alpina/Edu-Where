@@ -29,7 +29,7 @@ const teacherSchema = mongoose.Schema({
     // required: true,
     type: String
   },
-  classrooms: [{ type: Schema.Types.ObjectId, ref: "Classroom" }]
+  classRooms: [{ type: Schema.Types.ObjectId, ref: "ClassRoom" }]
 });
 
 let Teacher = mongoose.model("Teacher", teacherSchema);
