@@ -21,13 +21,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-<<<<<<< HEAD
 app.use(cors())
-=======
-
-//serving the react folder
-// app.use(express.static(path.resolve(__dirname, "../react-client/dist")));
->>>>>>> d460ad0536d069b5ed5d32e5405e2274ee135f62
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
