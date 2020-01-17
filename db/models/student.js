@@ -48,11 +48,6 @@ async function addNewstudent(student) {
   return newStudent.save();
 }
 
-// async function findStudent(username) {
-//   const found = await Student.find({ username })
-//   return Student.findOne({ username });
-
-// }
 const findStudent = async (username) => {
   return Student.findOne({ username });
 };
