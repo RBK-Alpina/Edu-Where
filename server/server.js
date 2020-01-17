@@ -7,11 +7,7 @@ const top3 = require("./routers/top3");
 const announce = require("./routers/announce");
 const announces = require("./routers/announces");
 const updates = require("./routers/updates");
-<<<<<<< HEAD
 const cors = require('cors');
-=======
-const teacher = require("./routers/teacher");
->>>>>>> d460ad0536d069b5ed5d32e5405e2274ee135f62
 
 
 require("dotenv").config();
@@ -26,7 +22,7 @@ app.use(cors())
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
-app.use(teacher)
+
 app.use("/categorie", top3);
 app.use("/announces", announces);
 app.use("/announce", announce);

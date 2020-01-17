@@ -42,11 +42,11 @@ const saveTeacher = async (teacher) => {//teacher is object contain all necessar
   return newTeacher.save();
 };
 
-const findTeacher = async (username) => {
+const findTeacher = (username) => {
   return Teacher.findOne({ username });
 };
 
-const updateTeacherClassroom = async (idteacher, idClassroom) => {
+const updateTeacherClassroom = (idteacher, idClassroom) => {
   var teacher = await Teacher.findOneAndUpdate(
     { _id: idteacher },
     {
