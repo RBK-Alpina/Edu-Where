@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 let timestampPlugin = require('../models/timestamp')
-require ('../index')
+require('../index')
 const Schema = mongoose.Schema
 const studentSchema = mongoose.Schema({
   firstName: {
@@ -56,8 +56,15 @@ async function addNewstudent(student) {
 const findStudent = async (username) => {
   return Student.findOne({ username });
 };
-async function modifyStudent(username){
-  const modify = await Student.update({ username})
+async function modifyStudent(idstudent, idClassroom) {
+  const modify = await Student.update(
+    { _id: idstudent },
+    {
+      $push: { classrooms: idClassroom }
+    },
+    { new: true }
+  )
+
 }
 
 module.exports.addNewstudent = addNewstudent;
@@ -65,9 +72,7 @@ module.exports.findStudent = findStudent;
 module.exports.modifyStudent = modifyStudent;
 
 
-
-// console.log(addNewstudent({username:"Hamam", email: "hamam@gmail.com",password : "****",birthday: "11/1/1111", firstName: "HAmam",lastName: "Elmuratdh"}))
-findStudent('Hamam').then(res=>{
+modifyStudent('Hamam')
+findStudent('Hamam').then(res => {
   console.log(res)
 })
-// console.log( findStudent('Hamam'))
