@@ -5,8 +5,14 @@ const classRoomSchema = mongoose.Schema({
   description: String,
   categories: String,
   teacher: String,
-  students: Array,
-  posts: Array
+  students: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'student'
+  }],
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'post'
+  }]
 })
 
 let ClassRoom = mongoose.model('ClassRoom', classRoomSchema)
@@ -33,21 +39,36 @@ module.exports.find = find = (objectCriteria, callback = {})=> {
 }
 
 module.exports.addStudent = addStudent = ( classRoomId, studentId )=>{
-  ClassRoom.findById({_id: classRoomId})
-  .then(res => {
-    res.students.push(studentId)
-    res.save()
-    console.log(res)
-  })
-  .catch(err => {
-    console.log(err)
-  })
+  ClassRoom.findByIdAndUpdate(
+    classRoomId,
+    {
+      $push: { students: studentId}
+    },
+    {new: true}
+    )
+  // .then(res => {
+  //   res.students.push(studentId)
+  //   res.save()
+  //   console.log(res)
+  // })
+  // .catch(err => {
+  //   console.log(err)
+  // })
 }
 
-// create({name: 'angular', description: 'learn angular in one day', categories: 'angular', teacher: 'Belkhere', students: ['Essam', 'Ali'], posts: [35,535,255]})
+module.exports._addPost = addPost = (classRoomId, postId)=> {
+  return ClassRoom.findByIdAndUpdate(
+    classRoomId,
+    {
+      $push: {posts: postId}
+    },
+    {new: true}
+  )
+}
+
+
+// create({name: 'react', description: 'learn react in one day', categories: 'react', teacher: 'Essam'})
 
 // find().then(res => {
 //   console.log(res)
 // })
-
-addStudent('5e20d1a709d6444094a35f25', 'sfd')
