@@ -11,12 +11,14 @@ var signUp = (request) => {//request : user information
         const expire = 3600;
         const token = jwt.sign(user, secret, { expiresIn: expire })
 
-        return { saved: true, username: user.username, token: token }
+        const details = new Details(user.username, token, "teacher")
+
+        return new AuthResponse("success", details)
 
       })
       .catch((err) => {//
-        if (err.code === 11000) return ({ status: false, username: err: 'duplicate entry '})
-        return ({ saved: false, username: err  })
+        if (err.code === 11000) return userExistsResponse;
+        return serverErrorResponse;
 
       });
   }
@@ -26,11 +28,13 @@ var signUp = (request) => {//request : user information
         const secret = process.env.JWT_SECRET;
         const expire = 3600;
         const token = jwt.sign(user, secret, { expiresIn: expire })
-        return { saved: true, username: user.username, token: token }
+        const details = new Details(user.username, token, "student")
+
+        return new AuthResponse("success", details)
       })
       .catch((err) => {//
-        if (err.code === 11000) return ({ saved: false, username: err: 'duplicate entry '})
-        return ({ saved: false, username: err: err })
+        if (err.code === 11000) return userExistsResponse;
+        return serverErrorResponse;
       });
   }
 }
@@ -46,7 +50,9 @@ const signIn = async (request) => {// return object if existing user , false if 
           const token = jwt.sign(user, secret, {
             expiresIn: expire
           });
-          return { username: user.username, role: 'teacher', token: token }
+          const details = new Details(user.username, token, "teacher")
+
+          return new AuthResponse("success", details)
         }
         return false//wrong  username or password
       } else {
@@ -67,6 +73,24 @@ const signIn = async (request) => {// return object if existing user , false if 
       }
     })
 }
+
+class Details {
+  constructor(username, token, role) {
+    this.username = username;
+    this.token = token;
+    this.role = role
+  }
+}
+
+class AuthResponse {
+  constructor(status, details) {
+    this.status = status;
+    this.details = details;
+  }
+}
+
+const userExistsResponse = new AuthResponse("User Already Exists", {});
+const serverErrorResponse = new AuthResponse("Server Side Error", {});
 
 module.exports.signIn = signIn;
 module.exports.signUp = signUp;
