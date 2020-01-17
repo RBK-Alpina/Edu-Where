@@ -30,22 +30,22 @@ router.post("/signUp", (req, res) => {
     });
 });
 
-router.post("/login", (req, res) => {
-  let { email, password } = req.body;
-  User.findUser(email, password)
-    .then(user => {
-      if (user.found) {
-        const secret = process.env.JWT_SECRET;
-        const expire = 3600;
-        const token = jwt.sign(user, secret, {
-          expiresIn: expire
-        });
-        return res.send({ authed: true, token });
-      } else {
-        res.status(201).json({ authed: false, token: "none", error: "Wrong password or email" });
-      }
-    })
-    .catch(err => res.status(500).json({ err }));
-});
+// router.post("/login", (req, res) => {
+//   let { email, password } = req.body;
+//   User.findUser(email, password)
+//     .then(user => {
+//       if (user.found) {
+//         const secret = process.env.JWT_SECRET;
+//         const expire = 3600;
+//         const token = jwt.sign(user, secret, {
+//           expiresIn: expire
+//         });
+//         return res.send({ authed: true, token });
+//       } else {
+//         res.status(201).json({ authed: false, token: "none", error: "Wrong password or email" });
+//       }
+//     })
+//     .catch(err => res.status(500).json({ err }));
+// });
 
-module.exports = router;
+// module.exports = router;
