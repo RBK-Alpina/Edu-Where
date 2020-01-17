@@ -60,8 +60,8 @@ const updateTeacherClassroom = async (idteacher, idClassroom) => {
 }
 
 
-saveTeacher({firstName: 'Mehdi', lastName: 'bahlol', email: 'esamfarg91@gmail.com',
-password: '34r33rr3', birthday: new Date(), username: 'essam', classRooms: '5e2181fcf74fe244c0e18cc0'})
+// saveTeacher({firstName: 'Mehdi', lastName: 'bahlol', email: 'esamfarg91@gmail.com',
+// password: '34r33rr3', birthday: new Date(), username: 'essam', classRooms: '5e2181fcf74fe244c0e18cc0'})
 
 
 

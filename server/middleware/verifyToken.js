@@ -1,11 +1,15 @@
 const jwt = require("jsonwebtoken");
+const { AuthResponse } = require('../../controller/responseModel');
+
+const invalidToken = new AuthResponse("Invalid Token", {});
+
 
 let verifyToken = (req, res, next) => {
   const token = req.header("token");
-  if (!token) return res.status(401).send("You need to be connected");
+  if (!token) return res.status(401).send(invalidToken);
 
-  const verified = jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.status(401).send("You need to be connected");
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.status(401).send(invalidToken);
     req.user = user;
     next();
   });
