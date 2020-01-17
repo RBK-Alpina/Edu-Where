@@ -66,13 +66,7 @@ module.exports.findStudent = findStudent;
 // module.exports.addClassRoom = addClassRoom;
 
 /// testing
-
-addNewstudent({firstName: 'Essam', lastName: 'Harrous', email: 'sfsdW@gmail.com', password: '9fuf4', birthday: new Date(), username: 'df98df'})
-
-// test.find({class: '5e21c235f1272f316c688076'})
-// .then(res => {
+// modifyStudent('Hamam')
+// findStudent('Hamam').then(res => {
 //   console.log(res)
-// })
-// .catch(err => {
-//   console.log(err)
 // })

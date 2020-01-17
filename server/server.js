@@ -2,13 +2,12 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const db = require("../db/index.js");
-const authRoute = require("./routers/auth");
-const top3 = require("./routers/top3");
-const announce = require("./routers/announce");
-const announces = require("./routers/announces");
-const updates = require("./routers/updates");
+// const authRoute = require("./routers/auth");
+// const top3 = require("./routers/top3");
+// const announce = require("./routers/announce");
+// const announces = require("./routers/announces");
+// const updates = require("./routers/updates");
 const cors = require('cors');
-const teacher = require("./routers/teacher");
 
 
 require("dotenv").config();
@@ -23,14 +22,14 @@ app.use(cors())
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
-app.use(teacher)
-app.use("/categorie", top3);
-app.use("/announces", announces);
-app.use("/announce", announce);
-app.use("/auth", authRoute);
-app.use("/update", updates);
 
+// app.use("/categorie", top3);
+// app.use("/announces", announces);
+// app.use("/announce", announce);
+// app.use("/auth", authRoute);
+// app.use("/update", updates);
 
+app.post('/signUp', require('./reqhandle').signUp)
 
 //for every req that dosen't have a route serve the index.html
 
