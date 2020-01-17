@@ -60,15 +60,13 @@ async function modifyStudent(idstudent, idClassroom) {
     { new: true }
   )
 
-  
-
 }
 
 module.exports.addNewstudent = addNewstudent;
 module.exports.findStudent = findStudent;
 module.exports.modifyStudent = modifyStudent;
 
-
+/// testing
 modifyStudent('Hamam')
 findStudent('Hamam').then(res => {
   console.log(res)
