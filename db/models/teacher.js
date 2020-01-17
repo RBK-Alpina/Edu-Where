@@ -1,31 +1,32 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+
 const { Schema } = mongoose;
 
 const teacherSchema = mongoose.Schema({
   firstName: {
-    required: true,
+    // required: true,
     type: String
   },
   lastName: {
-    required: true,
+    // required: true,
     type: String
   },
   email: {
     unique: true,
-    required: true,
+    // required: true,
     type: String
   },
   password: {
-    required: true,
+    // required: true,
     type: String
   },
   birthday: {
-    required: true,
+    // required: true,
     type: Date
   },
   username: {
-    required: true,
+    // required: true,
     type: String
   },
   classrooms: [{ type: Schema.Types.ObjectId, ref: "Classroom" }]
