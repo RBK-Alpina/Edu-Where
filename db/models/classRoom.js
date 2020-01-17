@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
 require('../index')
+const test = require('./studentClass')
+
 const classRoomSchema = mongoose.Schema({
   name: String,
   description: String,
   categories: String,
   teacher: String,
-  students: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'student'
-  }],
   posts: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'post'
@@ -24,7 +22,7 @@ module.exports.create = create = (classRoom) => {
       return {
         status: true,
         message: 'the class has been created'
-    }
+      }
     })
     .catch(err => {
       return {
@@ -34,18 +32,11 @@ module.exports.create = create = (classRoom) => {
     })
 }
 
+
 module.exports.find = find = (objectCriteria, callback = {})=> {
   return ClassRoom.find(objectCriteria)
 }
 
-module.exports.addStudent = addStudent = ( classRoomId, studentId )=>{
-  ClassRoom.findByIdAndUpdate(
-    classRoomId,
-    {
-      $push: { students: studentId}
-    },
-    {new: true}
-    )
   // .then(res => {
   //   res.students.push(studentId)
   //   res.save()
@@ -54,7 +45,7 @@ module.exports.addStudent = addStudent = ( classRoomId, studentId )=>{
   // .catch(err => {
   //   console.log(err)
   // })
-}
+// }
 
 module.exports._addPost = addPost = (classRoomId, postId)=> {
   return ClassRoom.findByIdAndUpdate(
@@ -71,4 +62,11 @@ module.exports._addPost = addPost = (classRoomId, postId)=> {
 
 // find().then(res => {
 //   console.log(res)
+// })
+// test.find({student: '5e21c328e1fdf83258e74205'})
+// .then(res => {
+//   console.log(res)
+// })
+// .catch(err => {
+//   console.log(err)
 // })
