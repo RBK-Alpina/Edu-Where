@@ -7,6 +7,8 @@ const top3 = require("./routers/top3");
 const announce = require("./routers/announce");
 const announces = require("./routers/announces");
 const updates = require("./routers/updates");
+const teacher = require("./routers/teacher");
+
 
 require("dotenv").config();
 
@@ -22,7 +24,7 @@ app.use(express.static(path.resolve(__dirname, "../react-client/dist")));
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
-
+app.use(teacher)
 app.use("/categorie", top3);
 app.use("/announces", announces);
 app.use("/announce", announce);
