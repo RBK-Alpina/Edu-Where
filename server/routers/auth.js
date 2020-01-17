@@ -1,11 +1,9 @@
 const express = require("express");
-// const User = require("../../db/models/users");
+// const User = require("../../db/models/users");????
 const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
-
 const router = express.Router();
-
 router.post("/signUp", (req, res) => {
   let { firstName, lastName, email, password } = req.body;
   User.saveUser(firstName, lastName, email, password)
