@@ -1,11 +1,11 @@
-const teacher = require("../models/teacher");
-const student = require("../models/student");
+const teacher = require("../db/models/teacher");
+const student = require("../db/models/student");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-var signUp = (request) => {//request : user information
-  if (request.occupation === "teacher") {
-    teacher.saveTeacher(request)
+var signUp = async (request) => {//request : user information
+  if (request.role === "teacher") {
+   return teacher.saveTeacher(request)
       .then((user) => {
         const secret = process.env.JWT_SECRET;
         const expire = 3600;
@@ -23,7 +23,7 @@ var signUp = (request) => {//request : user information
       });
   }
   else {
-    student.addNewstudent(request)
+    return student.addNewstudent(request)
       .then((user) => {
         const secret = process.env.JWT_SECRET;
         const expire = 3600;
@@ -41,7 +41,7 @@ var signUp = (request) => {//request : user information
 
 const signIn = async (request) => {// return object if existing user , false if psw or username are wrong
   teacher.findTeacher(request.username)
-    .then((user) => {
+    .then( async (user) => {
       if (user) {// if user a teacher
         let pswd = await bcrypt.compare(password, user.password);
         if (psw) {
@@ -54,10 +54,10 @@ const signIn = async (request) => {// return object if existing user , false if 
 
           return new AuthResponse("success", details)
         }
-        return wrongEntryPssword//wrong  username or password
+        return wrongEntryPssword
       } else {
         student.findStudent(request.username)
-          .then(user => {
+          .then( async (user) => {
             if (user) {// if user a teacher
               let pswd = await bcrypt.compare(password, user.password);
               if (psw) {
@@ -71,11 +71,11 @@ const signIn = async (request) => {// return object if existing user , false if 
               }
               return wrongEntryPssword
             }
-            else { return wrongEntryUsername })
-      }
-    })
+            else { return wrongEntryUsername }
+      })
+    }
 
-}
+})
 }
 class Details {
   constructor(username, token, role) {

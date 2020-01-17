@@ -46,7 +46,7 @@ const findTeacher = (username) => {
   return Teacher.findOne({ username });
 };
 
-const updateTeacherClassroom = (idteacher, idClassroom) => {
+const updateTeacherClassroom = async (idteacher, idClassroom) => {
   var teacher = await Teacher.findOneAndUpdate(
     { _id: idteacher },
     {
@@ -54,6 +54,7 @@ const updateTeacherClassroom = (idteacher, idClassroom) => {
     },
     { new: true }
   )
+  return teacher;
 }
 
 
