@@ -16,16 +16,18 @@ router.post("/signUp", (req, res) => {
         email: savedUser.email
       };
       const secret = process.env.JWT_SECRET;
-      const expire = 3600;
+      const expire = '20m';
       const token = jwt.sign(user, secret, {
         expiresIn: expire
       });
-      return res.status(201).send({ saved: true, user: savedUser, token });
+      return res.status(201).send({ authed: true, token });
     })
     .catch(err => {
+      console.log(err)
       res.status(201).json({
-        saved: false,
-        msg: "There is already an account with this email"
+        authed: false,
+        token: "none",
+        error: err
       });
     });
 });
@@ -40,9 +42,9 @@ router.post("/login", (req, res) => {
         const token = jwt.sign(user, secret, {
           expiresIn: expire
         });
-        return res.send({ found: true, token });
+        return res.send({ authed: true, token });
       } else {
-        res.status(201).json({ found: false, msg: "Wrong password or email" });
+        res.status(201).json({ authed: false, token: "none", error: "Wrong password or email" });
       }
     })
     .catch(err => res.status(500).json({ err }));

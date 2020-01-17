@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
+
 require("dotenv").config();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect( 'mongodb://localhost:27017/education',
+mongoose.connect(
+  process.env.DATABASE_URL,
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 mongoose.set("useCreateIndex", true);
