@@ -15,8 +15,8 @@ var signUp = (request) => {//request : user information
 
       })
       .catch((err) => {//
-        if (err.code === 11000) return ({ saved: false, username: err: 'duplicate entry '})
-        return ({ saved: false, username: err: err })
+        if (err.code === 11000) return ({ status: false, username: err: 'duplicate entry '})
+        return ({ saved: false, username: err  })
 
       });
   }
