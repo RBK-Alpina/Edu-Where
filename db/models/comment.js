@@ -13,7 +13,8 @@ const Comment = mongoose.model('Comment', commmentSchema)
 module.exports.create = create = (comment, postId) => {
   return Comment.create(comment)
   .then(res => {
-    return _post._addComment(res._id, postId)
+    _post._addComment(res._id, postId)
+    return res
   })
 }
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 require('../index')
-const test = require('./studentClass')
+// const test = require('./studentClass')
 
 const classRoomSchema = mongoose.Schema({
   name: String,
@@ -33,7 +33,7 @@ module.exports.create = create = (classRoom) => {
 }
 
 
-module.exports.find = find = (objectCriteria, callback = {})=> {
+module.exports.find = find = (objectCriteria = {}, callback = {})=> {
   return ClassRoom.find(objectCriteria)
 }
 
