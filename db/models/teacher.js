@@ -39,7 +39,6 @@ const saveTeacher = async (teacher) => {//teacher is object contain all necessar
   const hashedPassword = await bcrypt.hash(teacher.password, salt);
   teacher.password = hashedPassword
   let newTeacher = new Teacher(teacher);
-
   return newTeacher.save();
 };
 
