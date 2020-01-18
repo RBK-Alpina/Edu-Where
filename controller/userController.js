@@ -2,6 +2,8 @@ const teacher = require("../db/models/teacher");
 const student = require("../db/models/student");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const { AuthResponse } = require('./responseModel')
+
 require("dotenv").config();
 var signUp = async (request) => {//request : user information
 
@@ -10,14 +12,17 @@ var signUp = async (request) => {//request : user information
     return teacher.saveTeacher(request)
       .then((user) => {
         const secret = process.env.JWT_SECRET;
+
         const expire = '20m';
         const token = jwt.sign({ user }, secret, { expiresIn: expire })
+
         const details = new Details(user.username, token, "teacher")
         return new AuthResponse("success", details)
 
       })
       .catch((err) => {//
         if (err.code === 11000) return userExistsResponse;
+        console.log(err)
         return serverErrorResponse;
 
       });
@@ -94,12 +99,7 @@ class Details {
   }
 }
 
-class AuthResponse {
-  constructor(status, details) {
-    this.status = status;
-    this.details = details;
-  }
-}
+
 
 const userExistsResponse = new AuthResponse("User Already Exists", {});
 const serverErrorResponse = new AuthResponse("Server Side Error", {});
