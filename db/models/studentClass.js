@@ -27,10 +27,10 @@ module.exports.find = find = (criteria) => {
 
 // create({student: '5e21c328e1fdf83258e74205', class: '5e21c235f1272f316c688076'})
 
-find({student: '5e21c328e1fdf83258e74205'})
-.then(res => {
-  console.log(res)
-})
-.catch(err => {
-  console.log(err)
-})
+// find({student: '5e21c328e1fdf83258e74205'})
+// .then(res => {
+//   console.log(res)
+// })
+// .catch(err => {
+//   console.log(err)
+// })
