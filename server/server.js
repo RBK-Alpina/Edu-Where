@@ -25,11 +25,8 @@ app.listen(PORT, () => {
 // app.use("/auth", authRoute);
 // app.use("/update", updates);
 
-app.post('/signup', require('./reqhandle').signUp)
-app.post('/singin', (req, res)=>{})
-
-//verified routes under this
-app.use(verify)
+app.post('/signUp', require('./reqhandle').signUp)
+app.post('/signIn', require('./reqhandle').signIn)
 
 //for every req that dosen't have a route serve the index.html
 

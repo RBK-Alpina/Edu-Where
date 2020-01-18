@@ -16,7 +16,7 @@ const studentSchema = mongoose.Schema({
   },
   email: {
     unique: true,
-    required: true,
+     required: true,
     type: String
   },
   birthday: {
@@ -69,4 +69,14 @@ module.exports.findStudent = findStudent;
 // modifyStudent('Hamam')
 // findStudent('Hamam').then(res => {
 //   console.log(res)
+// })
+
+
+
+// addNewstudent({firstName: 'Mehdi', lastName: 'farg', email: 'mehdi@gmail.com', birthday: new Date(1995, 4, 25), username: 'mehdi', password: '13131313'})
+// .then(res => {
+//   console.log(res)
+// })
+// .catch(err => {
+//   console.log(err)
 // })
