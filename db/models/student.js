@@ -7,28 +7,28 @@ require('../index')
 const Schema = mongoose.Schema
 const studentSchema = mongoose.Schema({
   firstName: {
-    required: true,
+    // required: true,
     type: String
   },
   lastName: {
-    required: true,
+    // required: true,
     type: String
   },
   email: {
-    unique: true,
-    required: true,
+    //unique: true,
+    // required: true,
     type: String
   },
   birthday: {
-    required: true,
+    // required: true,
     type: Date
   },
   password: {
-    required: true,
+    // required: true,
     type: String
   },
   username: {
-    required: true,
+    // required: true,
     type: String,
   }
 });

@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const { Schema } = mongoose;
-require('../index')
 
 const teacherSchema = mongoose.Schema({
   firstName: {
@@ -40,7 +39,6 @@ const saveTeacher = async (teacher) => {//teacher is object contain all necessar
   const hashedPassword = await bcrypt.hash(teacher.password, salt);
   teacher.password = hashedPassword
   let newTeacher = new Teacher(teacher);
-
   return newTeacher.save();
 };
 
@@ -49,8 +47,8 @@ const findTeacher = (username) => {
 };
 
 const updateTeacherClassroom = async (idteacher, idClassroom) => {
-  var teacher = await Teacher.findByIdAndUpdate(
-    idteacher,
+  var teacher = await Teacher.findOneAndUpdate(
+    { _id: idteacher },
     {
       $push: { classrooms: idClassroom }
     },
@@ -58,11 +56,6 @@ const updateTeacherClassroom = async (idteacher, idClassroom) => {
   )
   return teacher;
 }
-
-
-
-// saveTeacher({firstName: 'Mehdi', lastName: 'bahlol', email: 'esamfarg91@gmail.com',
-// password: '34r33rr3', birthday: new Date(), username: 'essam', classRooms: '5e2181fcf74fe244c0e18cc0'})
 
 
 
