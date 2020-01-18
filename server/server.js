@@ -23,6 +23,7 @@ app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
 
+
 // app.use("/categorie", top3);
 // app.use("/announces", announces);
 // app.use("/announce", announce);
@@ -32,5 +33,9 @@ app.listen(PORT, () => {
 app.post('/signUp', require('./reqhandle').signUp)
 app.post('/signIn', require('./reqhandle').signIn)
 
+app.get('/classrooms', require('./reqhandle').getClasses)
+
+
+// app.post('/classrooms', require('./reqhandle').addClass)
 //for every req that dosen't have a route serve the index.html
 
