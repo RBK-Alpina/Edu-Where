@@ -2,15 +2,20 @@ const teacher = require("../db/models/teacher");
 const student = require("../db/models/student");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const { AuthResponse } = require('./responseModel')
 
+require("dotenv").config();
 var signUp = async (request) => {//request : user information
+
   if (request.role === "teacher") {
-   return teacher.saveTeacher(request)
+    // console.log("--->", request)
+    return teacher.saveTeacher(request)
       .then((user) => {
         const secret = process.env.JWT_SECRET;
         const expire = 3600;
-        const token = jwt.sign(user, secret, { expiresIn: expire })
-
+        console.log('user====>', user)
+        const token = jwt.sign({user}, secret, { expiresIn: '20m' })
+        console.log('token====>', token)
         const details = new Details(user.username, token, "teacher")
 
         return new AuthResponse("success", details)
@@ -18,6 +23,7 @@ var signUp = async (request) => {//request : user information
       })
       .catch((err) => {//
         if (err.code === 11000) return userExistsResponse;
+        console.log(err)
         return serverErrorResponse;
 
       });
@@ -41,7 +47,7 @@ var signUp = async (request) => {//request : user information
 
 const signIn = async (request) => {// return object if existing user , false if psw or username are wrong
   teacher.findTeacher(request.username)
-    .then( async (user) => {
+    .then(async (user) => {
       if (user) {// if user a teacher
         let pswd = await bcrypt.compare(password, user.password);
         if (psw) {
@@ -57,7 +63,7 @@ const signIn = async (request) => {// return object if existing user , false if 
         return wrongEntryPssword
       } else {
         student.findStudent(request.username)
-          .then( async (user) => {
+          .then(async (user) => {
             if (user) {// if user a teacher
               let pswd = await bcrypt.compare(password, user.password);
               if (psw) {
@@ -72,10 +78,10 @@ const signIn = async (request) => {// return object if existing user , false if 
               return wrongEntryPssword
             }
             else { return wrongEntryUsername }
-      })
-    }
+          })
+      }
 
-})
+    })
 }
 class Details {
   constructor(username, token, role) {
@@ -85,12 +91,7 @@ class Details {
   }
 }
 
-class AuthResponse {
-  constructor(status, details) {
-    this.status = status;
-    this.details = details;
-  }
-}
+
 
 const userExistsResponse = new AuthResponse("User Already Exists", {});
 const serverErrorResponse = new AuthResponse("Server Side Error", {});

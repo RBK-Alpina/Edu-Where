@@ -14,7 +14,7 @@ const teacherSchema = mongoose.Schema({
     type: String
   },
   email: {
-    unique: true,
+    //  unique: true,
     // required: true,
     type: String
   },
@@ -40,6 +40,7 @@ const saveTeacher = async (teacher) => {//teacher is object contain all necessar
   const hashedPassword = await bcrypt.hash(teacher.password, salt);
   teacher.password = hashedPassword
   let newTeacher = new Teacher(teacher);
+
   return newTeacher.save();
 };
 
@@ -59,13 +60,10 @@ const updateTeacherClassroom = async (idteacher, idClassroom) => {
 }
 
 
-saveTeacher({firstName: 'Belkheir', lastName: 'moham', email: 'belkheir@gmail.com', birthday: new Date(1998, 4, 25), username: 'belkheir', password: '14141414'})
-.then(res => {
-  console.log(res)
-})
-.catch(err => {
-  console.log(err)
-})
+
+// saveTeacher({firstName: 'Mehdi', lastName: 'bahlol', email: 'esamfarg91@gmail.com',
+// password: '34r33rr3', birthday: new Date(), username: 'essam', classRooms: '5e2181fcf74fe244c0e18cc0'})
+
 
 
 
