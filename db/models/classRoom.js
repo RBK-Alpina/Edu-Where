@@ -6,10 +6,13 @@ const classRoomSchema = mongoose.Schema({
   name: String,
   description: String,
   categories: String,
-  teacher: String,
+  teacher: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Teacher'
+  },
   posts: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'post'
+    ref: 'Post'
   }]
 })
 
@@ -58,7 +61,7 @@ module.exports._addPost = addPost = (classRoomId, postId)=> {
 }
 
 
-// create({name: 'react', description: 'learn react in one day', categories: 'react', teacher: 'Essam'})
+// create({name: 'react', description: 'learn react in one day', categories: 'react', teacher: '5e22d961530ce2246c20d903'})
 
 // find().then(res => {
 //   console.log(res)
