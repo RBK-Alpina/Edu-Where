@@ -33,6 +33,7 @@ module.exports.getClassesOfStudent = async (req, res) => {
 
 module.exports.getClasses = async (req, res) => {
   getClasses(response => {
+    console.log(response)
     res.send(response);
   });
 };
