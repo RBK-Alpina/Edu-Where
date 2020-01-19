@@ -10,12 +10,7 @@ module.exports.signUp = async (req, res) => {
 }
 
 module.exports.signIn = async (req, res) => {
-  console.log('rrrr')
   var response = await signIn(req.body)
-  console.log(
-    'rtyujikol',
-    response,
-    req.body
-  );
+  console.log(response, req.body);
   res.send(response)
 }

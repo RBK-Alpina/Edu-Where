@@ -17,6 +17,9 @@ var signUp = async request => {
         const expire = "20m";
         const token = jwt.sign({ user }, secret, { expiresIn: expire });
 
+        const details = new Details(user.username, token, "teacher", user._id);
+        return new AuthResponse("success", details);
+
         const details = new Details(user.username, token, "teacher");
         return new AuthResponse("success", details);
       })
@@ -35,12 +38,13 @@ var signUp = async request => {
         const expire = "20m";
         const token = jwt.sign({ user }, secret, { expiresIn: expire });
 
-        const details = new Details(user.username, token, "student");
+        const details = new Details(user.username, token, "student", user._id);
 
         return new AuthResponse("success", details);
       })
       .catch(err => {
         //
+        console.log(err);
         if (err.code === 11000) return userExistsResponse;
         return serverErrorResponse;
       });
@@ -61,7 +65,7 @@ const signIn = async request => {
           expiresIn: expire
         });
 
-        const details = new Details(user.username, token, "teacher");
+        const details = new Details(user.username, token, "teacher", user._id);
 
         return new AuthResponse("success", details);
       }
@@ -91,10 +95,11 @@ const signIn = async request => {
 };
 
 class Details {
-  constructor(username, token, role) {
+  constructor(username, token, role, id) {
     this.username = username;
     this.token = token;
     this.role = role;
+    this.id = id;
   }
 }
 
