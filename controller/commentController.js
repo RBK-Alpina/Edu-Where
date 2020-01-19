@@ -3,12 +3,6 @@ const Comment = require('../db/models/comment')
 
 module.exports.addComment = addComment = (comment, postId) => {
   return Comment.create(comment, postId)
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.log(err)
-  })
 }
 
 
