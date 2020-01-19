@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-require('../index')
+const mongoose = require("mongoose");
+require("../index");
 // const test = require('./studentClass')
 
 const classRoomSchema = mongoose.Schema({
@@ -8,15 +8,18 @@ const classRoomSchema = mongoose.Schema({
   categories: String,
   teacher: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Teacher'
+    ref: "Teacher"
   },
-  posts: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Post'
-  }]
-})
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post"
+    }
+  ]
+});
 
-let ClassRoom = mongoose.model('ClassRoom', classRoomSchema)
+let ClassRoom = mongoose.model("ClassRoom", classRoomSchema);
+
 
 module.exports.create = create = (classRoom) => {
   console.log(classRoom)
@@ -38,8 +41,14 @@ module.exports.create = create = (classRoom) => {
 
 
 module.exports.find = find = (objectCriteria = {}, callback = {}) => {
+  return ClassRoom.find(objectCriteria);
+};
+
+
+module.exports.find = find = (objectCriteria = {}, callback = {}) => {
   return ClassRoom.find(objectCriteria)
 }
+
 
 // .then(res => {
 //   res.students.push(studentId)
@@ -58,11 +67,16 @@ module.exports._addPost = addPost = (classRoomId, postId) => {
       $push: { posts: postId }
     },
     { new: true }
-  )
-}
 
+  );
+};
 
-// create({name: 'react', description: 'learn react in one day', categories: 'react', teacher: '5e22d961530ce2246c20d903'})
+// create({
+//   name: "angular",
+//   description: "learn angular in one day",
+//   categories: "angular",
+//   teacher: "5e2450f9de02572b904a7b3f"
+// });
 
 // find().then(res => {
 //   console.log(res)
