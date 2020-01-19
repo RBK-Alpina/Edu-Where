@@ -34,6 +34,8 @@ app.post('/signUp', require('./reqhandle').signUp)
 app.post('/signIn', require('./reqhandle').signIn)
 
 app.get('/classrooms', require('./reqhandle').getClasses)
+app.get('/classroomsByUser', require('./reqhandle').getClassesOfStudent)
+
 
 
 // app.post('/classrooms', require('./reqhandle').addClass)

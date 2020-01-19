@@ -75,10 +75,10 @@ const signIn = async (request) => {// return object if existing user , false if 
               if (psw) {
                 const secret = process.env.JWT_SECRET;
                 const expire = '20m';
-                const token = jwt.sign(user, secret, {
+                const token = jwt.sign({ user }, secret, {
                   expiresIn: expire
                 });
-                const details = new Details({ user }.username, token, "student")
+                const details = new Details(user.username, token, "student")
                 return new AuthResponse("success", details)
               }
               return wrongEntryPssword
@@ -98,8 +98,6 @@ class Details {
     this.role = role
   }
 }
-
-
 
 const userExistsResponse = new AuthResponse("User Already Exists", {});
 const serverErrorResponse = new AuthResponse("Server Side Error", {});
