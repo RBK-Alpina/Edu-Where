@@ -29,6 +29,7 @@ app.listen(PORT, () => {
 app.post('/signUp', require('./reqhandle').signUp)
 app.post('/signIn', require('./reqhandle').signIn)
 
+app.post('/addClassroom', require('./reqhandle').addClass)
 app.get('/classrooms', require('./reqhandle').getClasses)
 app.get('/classroomsByUser', require('./reqhandle').getClassesOfStudent)
 

@@ -19,44 +19,45 @@ const classRoomSchema = mongoose.Schema({
 let ClassRoom = mongoose.model('ClassRoom', classRoomSchema)
 
 module.exports.create = create = (classRoom) => {
-    ClassRoom.create(classRoom)
-    .then(res => {
-      console.log(res)
-      return {
-        status: true,
-        message: 'the class has been created'
-      }
-    })
-    .catch(err => {
-      return {
-        status: false,
-        message: 'failed to create the class'
-      }
-    })
+  console.log(classRoom)
+  return ClassRoom.create(classRoom)
+
+  //     .then(res => {
+  //       return {
+  //         status: true,
+  //         message: 'the class has been created'
+  //       }
+  //     })
+  //     .catch(err => {
+  //       return {
+  //         status: false,
+  //         message: 'failed to create the class'
+  //       }
+  //     })
 }
 
 
-module.exports.find = find = (objectCriteria = {}, callback = {})=> {
+module.exports.find = find = (objectCriteria = {}, callback = {}) => {
   return ClassRoom.find(objectCriteria)
 }
 
-  // .then(res => {
-  //   res.students.push(studentId)
-  //   res.save()
-  //   console.log(res)
-  // })
-  // .catch(err => {
-  //   console.log(err)
-  // })
+// .then(res => {
+//   res.students.push(studentId)
+//   res.save()
+//   console.log(res)
+// })
+// .catch(err => {
+//   console.log(err)
+// })
 // }
 
-module.exports._addPost = addPost = (classRoomId, postId)=> {
+module.exports._addPost = addPost = (classRoomId, postId) => {
   return ClassRoom.findByIdAndUpdate(
     classRoomId,
     {
-      $push: {posts: postId}
+      $push: { posts: postId }
     },
-    {new: true}
+    { new: true }
   )
 }
 

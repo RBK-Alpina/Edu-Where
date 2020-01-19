@@ -2,7 +2,6 @@ var { signIn, signUp } = require('../controller/userController')
 var { addClass, getClasses } = require('../controller/classRoomController')
 var { getClassesOfStudent } = require('../controller/studentClassController')
 
-
 module.exports.signUp = async (req, res) => {
   var response = await signUp(req.body)
   // console.log(
@@ -24,9 +23,9 @@ module.exports.signIn = async (req, res) => {
 
 //classroom
 module.exports.addClass = async (req, res) => {
-  console.log('addClass')
-  var response = await addClass()
-  console.log(response)
+  var response = await addClass(req.body)
+
+  res.send(response)
 }
 
 module.exports.getClassesOfStudent = async (req, res) => {

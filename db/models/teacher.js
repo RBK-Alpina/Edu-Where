@@ -13,7 +13,7 @@ const teacherSchema = mongoose.Schema({
     type: String
   },
   email: {
-     unique: true,
+    unique: true,
     required: true,
     type: String
   },
@@ -29,7 +29,7 @@ const teacherSchema = mongoose.Schema({
     required: true,
     type: String
   },
-  classRooms: [{ type: Schema.Types.ObjectId, ref: "ClassRoom" }]
+  classRooms: [{ type: Schema.Types.ObjectId, ref: "classRooms" }]
 });
 
 let Teacher = mongoose.model("Teacher", teacherSchema);
@@ -47,14 +47,15 @@ const findTeacher = (username) => {
 };
 
 const updateTeacherClassroom = async (idteacher, idClassroom) => {
+
   var teacher = await Teacher.findOneAndUpdate(
     { _id: idteacher },
-    {
-      $push: { classrooms: idClassroom }
-    },
+    { $push: { classRooms: idClassroom } },
     { new: true }
   )
   return teacher;
+
+
 }
 
 
