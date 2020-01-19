@@ -4,7 +4,7 @@ require("dotenv").config();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb+srv://essam:7nW0jQduNEIhhwEY@cluster0-cno1u.mongodb.net/test?retryWrites=true&w=majority",
+mongoose.connect(process.env.DATABASE_URL,
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 mongoose.set("useCreateIndex", true);

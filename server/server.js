@@ -2,11 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const db = require("../db/index.js");
-// const authRoute = require("./routers/auth");
-// const top3 = require("./routers/top3");
-// const announce = require("./routers/announce");
-// const announces = require("./routers/announces");
-// const updates = require("./routers/updates");
+const verify = require('./middleware/verifyToken');
 const cors = require('cors');
 
 
@@ -31,6 +27,5 @@ app.listen(PORT, () => {
 
 app.post('/signUp', require('./reqhandle').signUp)
 app.post('/signIn', require('./reqhandle').signIn)
-
 //for every req that dosen't have a route serve the index.html
 
