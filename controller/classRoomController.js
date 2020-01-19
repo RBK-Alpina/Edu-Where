@@ -9,17 +9,17 @@ module.exports.getClasses = getClasses = async (
     .find()
     .lean()
     .then(res => {
-      res.forEach(classRoom => {
+      res.forEach((classRoom, i) => {
         delete classRoom.posts;
         if (studentId != undefined) {
           studentClass
             .check({ student: studentId, class: classRoom._id })
             .then(value => {
               classRoom.enrolled = value;
-              callback(new Response(true, res));
+              i == res.length - 1 ? callback(new Response(true, res)) : null;
             });
         } else {
-          callback(new Response(true, res));
+          i == res.length - 1 ? callback(new Response(true, res)) : null;
         }
       });
     })
