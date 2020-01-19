@@ -1,10 +1,10 @@
 var mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-let timestampPlugin = require('../models/timestamp')
-let test = require('./studentClass')
+let timestampPlugin = require("../models/timestamp");
+let test = require("./studentClass");
 
-require('../index')
-const Schema = mongoose.Schema
+require("../index");
+const Schema = mongoose.Schema;
 const studentSchema = mongoose.Schema({
   firstName: {
     // required: true,
@@ -29,15 +29,15 @@ const studentSchema = mongoose.Schema({
   },
   username: {
     // required: true,
-    type: String,
+    type: String
   }
 });
 
-studentSchema.plugin(timestampPlugin)
+studentSchema.plugin(timestampPlugin);
 //function that will hash the password and save it in the student collection
 //this function return a promise
 
-const Student = mongoose.model('Student', studentSchema)
+const Student = mongoose.model("Student", studentSchema);
 
 async function addNewstudent(student) {
   const salt = await bcrypt.genSalt();
@@ -47,7 +47,7 @@ async function addNewstudent(student) {
   return newStudent.save();
 }
 
-const findStudent = async (username) => {
+const findStudent = async username => {
   return Student.findOne({ username });
 };
 // async function addClassRoom(idstudent, idClassroom) {
@@ -71,12 +71,17 @@ module.exports.findStudent = findStudent;
 //   console.log(res)
 // })
 
-
-
-// addNewstudent({firstName: 'Mehdi', lastName: 'farg', email: 'mehdi@gmail.com', birthday: new Date(1995, 4, 25), username: 'mehdi', password: '13131313'})
-// .then(res => {
-//   console.log(res)
+// addNewstudent({
+//   firstName: "belkheir",
+//   lastName: "mehdi",
+//   email: "belkhier@gmail.com",
+//   birthday: new Date(1996, 4, 25),
+//   username: "belkheir",
+//   password: "13131313"
 // })
-// .catch(err => {
-//   console.log(err)
-// })
+//   .then(res => {
+//     console.log(res);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
