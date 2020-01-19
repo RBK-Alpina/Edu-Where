@@ -18,6 +18,7 @@ module.exports.signIn = async (req, res) => {
     response,
     req.body
   );
+  console.log(response, req.body);
   res.send(response)
 }
 

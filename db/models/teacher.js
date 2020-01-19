@@ -5,28 +5,28 @@ const { Schema } = mongoose;
 
 const teacherSchema = mongoose.Schema({
   firstName: {
-    // required: true,
+    required: true,
     type: String
   },
   lastName: {
-    // required: true,
+    required: true,
     type: String
   },
   email: {
-    //  unique: true,
-    // required: true,
+     unique: true,
+    required: true,
     type: String
   },
   password: {
-    // required: true,
+    required: true,
     type: String
   },
-  birthday: {
-    // required: true,
+  birthdate: {
+    required: true,
     type: Date
   },
   username: {
-    // required: true,
+    required: true,
     type: String
   },
   classRooms: [{ type: Schema.Types.ObjectId, ref: "ClassRoom" }]
