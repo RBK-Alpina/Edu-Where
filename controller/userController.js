@@ -13,14 +13,11 @@ var signUp = async request => {
       .saveTeacher(request)
       .then(user => {
         const secret = process.env.JWT_SECRET;
-
+        console.log(secret);
         const expire = "20m";
         const token = jwt.sign({ user }, secret, { expiresIn: expire });
 
         const details = new Details(user.username, token, "teacher", user._id);
-        return new AuthResponse("success", details);
-
-        const details = new Details(user.username, token, "teacher");
         return new AuthResponse("success", details);
       })
       .catch(err => {
@@ -35,6 +32,7 @@ var signUp = async request => {
       .addNewstudent(request)
       .then(user => {
         const secret = process.env.JWT_SECRET;
+        console.log(secret);
         const expire = "20m";
         const token = jwt.sign({ user }, secret, { expiresIn: expire });
 
@@ -58,8 +56,10 @@ const signIn = async request => {
     if (user) {
       // if user a teacher
       let psw = await bcrypt.compare(request.password, user.password);
+      console.log(request.password, user.password);
       if (psw) {
         const secret = process.env.JWT_SECRET;
+        console.log(secret);
         const expire = "20m";
         const token = jwt.sign({ user }, secret, {
           expiresIn: expire
@@ -79,10 +79,15 @@ const signIn = async request => {
           if (psw) {
             const secret = process.env.JWT_SECRET;
             const expire = "20m";
-            const token = jwt.sign(user, secret, {
+            const token = jwt.sign({ user }, secret, {
               expiresIn: expire
             });
-            const details = new Details({ user }.username, token, "student");
+            const details = new Details(
+              user.username,
+              token,
+              "student",
+              user._id
+            );
             return new AuthResponse("success", details);
           }
           return wrongEntryPssword;
