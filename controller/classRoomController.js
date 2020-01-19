@@ -29,12 +29,13 @@ module.exports.getClassById = getClassById = async (classId) => {
 module.exports.addClass = addClass = (classObj) => {
   return classRoom.create(classObj)
     .then(res => {
-      teacher.updateTeacherClassroom(classObj.teacher, res._id).then((result) => {
-        return {
-          status: true,
-          message: 'the class has been created'
-        }
-      })
+      return teacher.updateTeacherClassroom(classObj.teacher, res._id)
+        .then((result) => {
+          return {
+            status: true,
+            message: 'the class has been created'
+          }
+        })
 
     })
     .catch(err => {

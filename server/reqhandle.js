@@ -24,7 +24,7 @@ module.exports.signIn = async (req, res) => {
 //classroom
 module.exports.addClass = async (req, res) => {
   var response = await addClass(req.body)
-
+  console.log(response)
   res.send(response)
 }
 
