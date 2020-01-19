@@ -21,7 +21,7 @@ const teacherSchema = mongoose.Schema({
     required: true,
     type: String
   },
-  birthday: {
+  birthdate: {
     required: true,
     type: Date
   },

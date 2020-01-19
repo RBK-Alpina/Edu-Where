@@ -27,6 +27,5 @@ app.listen(PORT, () => {
 
 app.post('/signUp', require('./reqhandle').signUp)
 app.post('/signIn', require('./reqhandle').signIn)
-
 //for every req that dosen't have a route serve the index.html
 

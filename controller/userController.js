@@ -40,6 +40,7 @@ var signUp = async (request) => {//request : user information
         return new AuthResponse("success", details)
       })
       .catch((err) => {//
+        console.log(err)
         if (err.code === 11000) return userExistsResponse;
         return serverErrorResponse;
       });
@@ -75,7 +76,7 @@ const signIn = async (request) => {// return object if existing user , false if 
               if (psw) {
                 const secret = process.env.JWT_SECRET;
                 const expire = '20m';
-                const token = jwt.sign(user, secret, {
+                const token = jwt.sign({user}, secret, {
                   expiresIn: expire
                 });
                 const details = new Details({ user }.username, token, "student")
