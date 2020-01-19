@@ -1,7 +1,9 @@
 const StudentClass = require("../db/models/studentClass");
 
 module.exports.enroll = enroll = (studentId, classId) => {
-  return StudentClass.create({ student: studentId, class: classId });
+  let test = StudentClass.create({ student: studentId, class: classId });
+  console.log(test)
+  return test
 };
 
 module.exports.getStudentsOfClass = getStudentsOfClass = classId => {
@@ -30,7 +32,7 @@ module.exports.getClassesOfStudent = getClassesOfStudent = studentId => {
 
 getStudentsOfClass("5e245148d308931e94d95085")
   .then(res => {
-    console.log(res);
+    // console.log(res);
   })
   .catch(err => {
     console.log(err);
