@@ -16,7 +16,7 @@ var signUp = async (request) => {//request : user information
         const expire = '20m';
         const token = jwt.sign({ user }, secret, { expiresIn: expire })
 
-        const details = new Details(user.username, token, "teacher")
+        const details = new Details(user.username, token, "teacher", user.id)
         return new AuthResponse("success", details)
 
       })
@@ -35,7 +35,7 @@ var signUp = async (request) => {//request : user information
         const expire = '20m';
         const token = jwt.sign({ user }, secret, { expiresIn: expire })
 
-        const details = new Details(user.username, token, "student")
+        const details = new Details(user.username, token, "student", user.id)
 
         return new AuthResponse("success", details)
       })
@@ -60,7 +60,7 @@ const signIn = async (request) => {// return object if existing user , false if 
             expiresIn: expire
           });
 
-          const details = new Details(user.username, token, "teacher")
+          const details = new Details(user.username, token, "teacher",user.id)
 
           return new AuthResponse("success", details)
         }
@@ -79,7 +79,7 @@ const signIn = async (request) => {// return object if existing user , false if 
                 const token = jwt.sign({user}, secret, {
                   expiresIn: expire
                 });
-                const details = new Details({ user }.username, token, "student")
+                const details = new Details({ user }.username, token, "student", user.id)
                 return new AuthResponse("success", details)
               }
               return wrongEntryPssword
@@ -93,10 +93,11 @@ const signIn = async (request) => {// return object if existing user , false if 
 }
 
 class Details {
-  constructor(username, token, role) {
+  constructor(username, token, role, id) {
     this.username = username;
     this.token = token;
-    this.role = role
+    this.role = role;
+    this.id = id;
   }
 }
 
