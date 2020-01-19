@@ -20,26 +20,35 @@ const classRoomSchema = mongoose.Schema({
 
 let ClassRoom = mongoose.model("ClassRoom", classRoomSchema);
 
-module.exports.create = create = classRoom => {
-  ClassRoom.create(classRoom)
-    .then(res => {
-      console.log(res);
-      return {
-        status: true,
-        message: "the class has been created"
-      };
-    })
-    .catch(err => {
-      return {
-        status: false,
-        message: "failed to create the class"
-      };
-    });
-};
+
+module.exports.create = create = (classRoom) => {
+  console.log(classRoom)
+  return ClassRoom.create(classRoom)
+
+  //     .then(res => {
+  //       return {
+  //         status: true,
+  //         message: 'the class has been created'
+  //       }
+  //     })
+  //     .catch(err => {
+  //       return {
+  //         status: false,
+  //         message: 'failed to create the class'
+  //       }
+  //     })
+}
+
 
 module.exports.find = find = (objectCriteria = {}, callback = {}) => {
   return ClassRoom.find(objectCriteria);
 };
+
+
+module.exports.find = find = (objectCriteria = {}, callback = {}) => {
+  return ClassRoom.find(objectCriteria)
+}
+
 
 // .then(res => {
 //   res.students.push(studentId)
@@ -58,6 +67,7 @@ module.exports._addPost = addPost = (classRoomId, postId) => {
       $push: { posts: postId }
     },
     { new: true }
+
   );
 };
 

@@ -39,16 +39,24 @@ module.exports.getClassById = getClassById = async classId => {
     });
 };
 
-module.exports.addClass = addClass = async classObj => {
-  return classRoom
-    .create(classObj)
+module.exports.addClass = addClass = (classObj) => {
+  return classRoom.create(classObj)
     .then(res => {
-      return new Response(true, res);
+    return teacher.updateTeacherClassroom(classObj.teacher, res._id).then((result) => {
+        return {
+          status: true,
+          message: 'the class has been created'
+        }
+      })
+
     })
     .catch(err => {
-      return new Response(false, err);
-    });
-};
+      return {
+        status: false,
+        message: 'failed to create the class'
+      }
+    })
+}
 
 class Response {
   constructor(status, response) {
@@ -62,9 +70,14 @@ class Response {
   }
 }
 
+
+// addClass({ name: 'testclass' })
+// console.log(getClasses())
+
 // getClassById('5e21c235f1272f316c688076')
 // console.log(getClasses())
 
-getClasses(result => {
-  console.log(result);
-});
+//getClasses(result => {
+  //console.log(result);
+//});
+

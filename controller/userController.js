@@ -65,7 +65,9 @@ const signIn = async request => {
           expiresIn: expire
         });
 
+
         const details = new Details(user.username, token, "teacher", user._id);
+
 
         return new AuthResponse("success", details);
       }
