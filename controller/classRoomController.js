@@ -40,6 +40,7 @@ module.exports.getClassById = getClassById = async classId => {
       }
     }])
     .then(res => {
+      console.log(res[0].posts[0].comments)
       return new Response(true, res[0]);
     })
     .catch(err => {

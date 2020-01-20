@@ -66,13 +66,11 @@ module.exports.addPost = async (req, res) => {
 
 module.exports.addComment = async (req, res) => {
 
-  addComment(req.body, req.params.id)
-  .then(result => {
+  addComment(req.body, req.params.id, (result)=> {
+    console.log(result)
     res.send(result)
   })
-  .catch(err => {
-    console.log(err)
-  })
+
 }
 
 module.exports.enroll = async (req, res) => {
