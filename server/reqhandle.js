@@ -1,4 +1,6 @@
 var { signIn, signUp } = require("../controller/userController");
+var { enroll } = require("../controller/studentClassController");
+
 var {
   addClass,
   getClasses,
@@ -38,16 +40,18 @@ module.exports.getClassesOfStudent = async (req, res) => {
 };
 
 module.exports.getClasses = async (req, res) => {
+  console.log('*********************--------->', req.body)
   getClasses(response => {
+    console.log(response)
     res.send(response);
-  });
+  }, req.body.idStudent);
 };
 
 module.exports.getClass = async (req, res) => {
   var id = req.params.id;
-  console.log(id, "id here");
+
   var result = await getClassById(id);
-  console.log(result);
+
   res.send(result);
 };
 
@@ -69,4 +73,11 @@ module.exports.addComment = async (req, res) => {
   .catch(err => {
     console.log(err)
   })
+}
+
+module.exports.enroll = async (req, res) => {
+  console.log('====req.body==>', req.body)
+
+  var res = await enroll(req.body.studentId, req.body.classId)
+  console.log('reponse enroll===>', res)
 }
