@@ -4,7 +4,10 @@ const _post = require('./post')
 
 const commmentSchema = mongoose.Schema({
   text: String,
-  student: String,
+  student: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Student'
+  },
   date: Date
 })
 
@@ -13,6 +16,7 @@ const Comment = mongoose.model('Comment', commmentSchema)
 module.exports.create = create = (comment, postId) => {
   return Comment.create(comment)
   .then(res => {
+    //console.log('comment id ----->', res._id)
     _post._addComment(res._id, postId)
     return res
   })

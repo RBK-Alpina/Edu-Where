@@ -33,7 +33,8 @@ app.post("/classrooms", require("./reqhandle").getClasses);
 
 app.get("/classroomsByUser", require("./reqhandle").getClassesOfStudent);
 app.get("/classroom/:id", require("./reqhandle").getClass);
-app.post("/classroom/post", require('./reqhandle').addPost)
+app.post("/classroom/post/:id", require('./reqhandle').addPost)
+app.post('/comment/:id', require('./reqhandle').addComment)
 
 app.post("/enroll", require('./reqhandle').enroll)
 

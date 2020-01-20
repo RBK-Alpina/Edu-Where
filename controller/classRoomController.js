@@ -30,7 +30,15 @@ module.exports.getClasses = getClasses = async (
 
 module.exports.getClassById = getClassById = async classId => {
   return classRoom
-    .find({ _id: classId })
+    .find({ _id: classId }).populate(['teacher', {
+      path : 'posts',
+      populate : {
+        path : 'comments',
+        populate: {
+          path: 'student'
+        }
+      }
+    }])
     .then(res => {
       return new Response(true, res[0]);
     })
