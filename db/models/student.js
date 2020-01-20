@@ -50,6 +50,10 @@ async function addNewstudent(student) {
 const findStudent = async username => {
   return Student.findOne({ username });
 };
+
+module.exports.find = (_id) => {
+  return Student.findById(_id)
+}
 // async function addClassRoom(idstudent, idClassroom) {
 //   const modify = await Student.update(
 //     { _id: idstudent },

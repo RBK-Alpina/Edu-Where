@@ -1,8 +1,10 @@
 const Comment = require('../db/models/comment')
 
 
-module.exports.addComment = addComment = (comment, postId) => {
-  return Comment.create(comment, postId)
+module.exports.addComment = addComment = (comment, postId, callback) => {
+  Comment.create(comment, postId, (result)=> {
+    callback(result)
+  })
 }
 
 
